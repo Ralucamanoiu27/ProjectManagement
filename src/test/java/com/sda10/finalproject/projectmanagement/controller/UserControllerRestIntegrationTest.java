@@ -1,11 +1,9 @@
 package com.sda10.finalproject.projectmanagement.controller;
 
-import com.sda10.finalproject.projectmanagement.RestIntegrationTest;
-import com.sda10.finalproject.projectmanagement.dto.ProjectDto;
 import com.sda10.finalproject.projectmanagement.dto.ProjectMapper;
 import com.sda10.finalproject.projectmanagement.dto.UserDto;
 import com.sda10.finalproject.projectmanagement.dto.UserMapper;
-import com.sda10.finalproject.projectmanagement.model.Project;
+import com.sda10.finalproject.projectmanagement.integration.RestIntegrationTest;
 import com.sda10.finalproject.projectmanagement.model.Role;
 import com.sda10.finalproject.projectmanagement.model.User;
 import com.sda10.finalproject.projectmanagement.repository.ProjectRepository;
@@ -59,16 +57,16 @@ public class UserControllerRestIntegrationTest extends RestIntegrationTest {
     public void givenUserDetails_whenPostRequestIsReceived_ThenCreateNewUserDetails() {
 
         User user = new User();
-        user.setUserName("Raluca")
+        user.setUsername("Raluca")
                 .setPassword("123")
                 .setRole(Role.ADMIN)
                 .setEmail("aaa@yahoo.com")
-                .setDisplayedName("Ana Are mere");
+                .setDisplayName("Ana Are mere");
 
         user = userRepository.save(user);
 
         UserDto expectedResult = UserDto.userDto()
-                .setUserName("cristina")
+                .setUsername("cristina")
                 .setPassword("123")
                 .setRole(Role.ADMIN);
         String relativePath = API_USERS;
@@ -85,15 +83,15 @@ public class UserControllerRestIntegrationTest extends RestIntegrationTest {
     @Test
     public void givenExistingId_whenGetUserById_ThenReturnUser() {
         User user = new User();
-        user.setUserName("raluca")
+        user.setUsername("raluca")
                 .setPassword("123")
                 .setRole(Role.ADMIN);
         user = userRepository.save(user);
 
         User expectedUser = new User();
 
-        expectedUser.setUserName("project3")
-                .setDisplayedName("aaaa")
+        expectedUser.setUsername("project3")
+                .setDisplayName("aaaa")
                 .setEmail("eeee@yahoo.ro")
                 .setPassword("1");
 
@@ -114,7 +112,7 @@ public class UserControllerRestIntegrationTest extends RestIntegrationTest {
 
         /// trebuie sters userul din proiect / taskuri
         User user = new User();
-        user.setUserName("raluca")
+        user.setUsername("raluca")
                 .setPassword("123")
                 .setRole(Role.ADMIN);
         user = userRepository.save(user);
@@ -131,13 +129,13 @@ public class UserControllerRestIntegrationTest extends RestIntegrationTest {
     @Test
     public void givenProjectDetails_whenPutRequestIsReceived_ThenUpdateNewProjectDetails() {
         User user = new User();
-        user.setUserName("raluca")
+        user.setUsername("raluca")
                 .setPassword("123")
                 .setRole(Role.ADMIN);
         user = userRepository.save(user);
 
         UserDto newUser = userMapper.toDto(user)
-                .setUserName("cristinaaa");
+                .setUsername("cristinaaa");
 
         String relativePath = API_USERS + "/" + newUser.id;
         this.restTemplate.put(relativePath, newUser);
@@ -152,20 +150,20 @@ public class UserControllerRestIntegrationTest extends RestIntegrationTest {
     @Test
     public void givenUserDetails_whenSearchUserByNameOrEmail_ThenDisplayIfNotFoundNull() {
         User user = new User();
-        user.setUserName("raluca")
+        user.setUsername("raluca")
                 .setPassword("12334")
                 .setRole(Role.USER);
 
 
         User user1 = new User();
-        user1.setUserName("cristina")
+        user1.setUsername("cristina")
                 .setPassword("12789")
                 .setRole(Role.USER);
 
         user = userRepository.save(user);
         user1 = userRepository.save(user1);
 
-        String relativePath = API_USERS + "?name=" + user1.getUserName();
+        String relativePath = API_USERS + "?name=" + user1.getUsername();
 
         UserDto expectedResponse = userMapper.toDto(user1);
         ResponseEntity<UserDto> response = this.restTemplate.getForEntity(url(relativePath), UserDto.class);

@@ -6,12 +6,10 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name=Sprint.SPRINT_TABLE)
+@Table(name = Sprint.SPRINT_TABLE)
 public class Sprint {
-// Spring entity from Projects
 
-    public static final String SPRINT_TABLE="SPRINTS";
-
+    public static final String SPRINT_TABLE = "SPRINTS";
 
     @Id
     @GeneratedValue
@@ -29,7 +27,7 @@ public class Sprint {
     private String plannedStoryPoint;
 
     @ManyToOne
-    @JoinColumn(name="project_id", referencedColumnName = "id")
+    @JoinColumn(name = "project_id", referencedColumnName = "id")
     @NotNull
     private Project project;
 
@@ -78,7 +76,6 @@ public class Sprint {
         return this;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,6 +90,6 @@ public class Sprint {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id,  dateFrom, dateTo, plannedStoryPoint, project);
+        return Objects.hash(id, dateFrom, dateTo, plannedStoryPoint, project);
     }
 }

@@ -2,15 +2,15 @@ package com.sda10.finalproject.projectmanagement.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
 import java.util.Objects;
 
 import static com.sda10.finalproject.projectmanagement.model.User.USERS_TABLE;
 
 @Entity
-@Table(name=USERS_TABLE)
+@Table(name = USERS_TABLE)
 public class User {
-    public static final String USERS_TABLE="USERS";
+
+    public static final String USERS_TABLE = "USERS";
 
     @Id
     @GeneratedValue
@@ -18,7 +18,7 @@ public class User {
 
     @Column
     @NotNull
-    private String userName;
+    private String username;
 
     @Column
     @NotNull
@@ -28,7 +28,7 @@ public class User {
     private String email;
 
     @Column
-    private String displayedName;
+    private String displayName;
 
     @Column
     @NotNull
@@ -43,12 +43,12 @@ public class User {
         return this;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public User setUserName(String userName) {
-        this.userName = userName;
+    public User setUsername(String username) {
+        this.username = username;
         return this;
     }
 
@@ -70,12 +70,12 @@ public class User {
         return this;
     }
 
-    public String getDisplayedName() {
-        return displayedName;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public User setDisplayedName(String displayedName) {
-        this.displayedName = displayedName;
+    public User setDisplayName(String displayName) {
+        this.displayName = displayName;
         return this;
     }
 
@@ -94,15 +94,16 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return Objects.equals(id, user.id) &&
-                Objects.equals(userName, user.userName) &&
+                Objects.equals(username, user.username) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(email, user.email) &&
-                Objects.equals(displayedName, user.displayedName) &&
+                Objects.equals(displayName, user.displayName) &&
                 role == user.role;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userName, password, email, displayedName, role);
+        return Objects.hash(id, username, password, email, displayName, role);
     }
+
 }

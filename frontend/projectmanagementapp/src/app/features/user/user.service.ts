@@ -9,10 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-
-
-private readonly  USER_API = `${environment.serverApiUrl}/api/users`;
-  constructor(private httpClient: HttpClient) {}
+  private readonly USER_API = `${environment.serverApiUrl}/api/users`;
+  constructor(private httpClient: HttpClient) { }
 
   saveUser(user: User): Observable<User> {
     return this.httpClient.post<User>(this.USER_API, user);
@@ -20,9 +18,9 @@ private readonly  USER_API = `${environment.serverApiUrl}/api/users`;
 
   searchUserByName(nameParam: string) {
     return this.httpClient.get<User[]>(this.USER_API + '/search', {
-    params: { name: nameParam }
-  });
+      params: { name: nameParam }
+    });
 
-}
+  }
 
 }

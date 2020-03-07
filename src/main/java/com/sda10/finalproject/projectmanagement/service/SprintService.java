@@ -5,7 +5,6 @@ import com.sda10.finalproject.projectmanagement.repository.SprintRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -13,51 +12,53 @@ import java.util.Optional;
 @Service
 @Transactional
 public class SprintService {
+
     private final SprintRepository sprintRepository;
 
     @Autowired
     public SprintService(SprintRepository sprintRepository) {
-        this.sprintRepository=sprintRepository;
+        this.sprintRepository = sprintRepository;
     }
 
-    public Optional<Sprint> getSprintById(Long id) {
+    public Optional<Sprint> findById(Long id) {
         return sprintRepository.findById(id);
     }
-    public Sprint createSprint(Sprint sprint) {
+
+    public Sprint save(Sprint sprint) {
         if (!sprint.getDateFrom().isBefore(sprint.getDateTo())) {
             throw new IllegalArgumentException("Sprint interval is not valid");
         }
         if (sprintOverLapsWithExistingSprint(sprint)) {
             throw new IllegalArgumentException("Sprint interval overlaps with existing sprints");
-
         }
         return sprintRepository.save(sprint);
     }
 
     private boolean sprintOverLapsWithExistingSprint(Sprint sprint) {
-        List<Sprint> existingSprints=sprintRepository.findSprintsByProject(sprint.getProject());
+        List<Sprint> existingSprints = sprintRepository.findSprintsByProject(sprint.getProject());
         for (Sprint existingSprint : existingSprints) {
             if (sprint.getDateFrom().isAfter(existingSprint.getDateFrom())
-            && sprint.getDateFrom().isBefore(existingSprint.getDateTo())) {
+                    && sprint.getDateFrom().isBefore(existingSprint.getDateTo())) {
                 return true;
             }
             if (sprint.getDateTo().isAfter(existingSprint.getDateFrom()) &&
-            sprint.getDateTo().isBefore(existingSprint.getDateTo())) {
+                    sprint.getDateTo().isBefore(existingSprint.getDateTo())) {
                 return true;
             }
         }
         return false;
     }
 
-
-    public Sprint updateSprint(Long id, Sprint sprint) {
+    // TODO: investigate this
+    public Sprint update(Long id, Sprint sprint) {
         sprintRepository
                 .findById(id)
                 .orElseThrow(RuntimeException::new);
         sprint.setId(id);
         return sprintRepository.save(sprint);
     }
-    public void deleteSprint(Long id) {
+
+    public void delete(Long id) {
         Sprint existingSprint = sprintRepository
                 .findById(id)
                 .orElseThrow(RuntimeException::new);

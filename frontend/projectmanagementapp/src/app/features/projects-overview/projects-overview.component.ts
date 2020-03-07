@@ -13,16 +13,16 @@ export class ProjectsOverviewComponent implements OnInit {
   projects: Observable<Project[]>;
   columnsToDisplay: string[];
 
-  constructor(private projectService: ProjectService ) {}
+  constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
     this.projects = this.projectService.getAllProjects();
     this.columnsToDisplay = ['id', 'name', 'description', 'administrator', 'actions'];
-
   }
-deleteProject(id: number){
-  this.projectService.deleteProject(id)
-  .subscribe(result => this.projects = this.projectService.getAllProjects());
-}
+
+  deleteProject(id: number) {
+    this.projectService.deleteProject(id)
+      .subscribe(result => this.projects = this.projectService.getAllProjects());
+  }
 
 }

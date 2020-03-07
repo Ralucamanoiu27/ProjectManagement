@@ -16,27 +16,24 @@ import { Sprint } from 'src/app/shared/model/sprint';
 })
 export class TaskComponent implements OnInit {
 
+  nameTask: string;
+  descriptionTask: string;
+  sprint: Sprint;
+  difficulty: string;
+  storyPoints: string;
+  progress: string;
+  assignPerson: User;
 
-
-    nameTask: string;
-    descriptionTask: string;
-    sprint: Sprint;
-    dificulty: string;
-    storyPoints: string;
-    progress: string;
-    assignPerson: User;
-    
-    dificultes: string[] = ['UNU','DOI','TREI','PATRU','CINCI'];
-    progresses: string[] = ['BACKLOG', 'TO_DO', 'IN_PROGRESS', 'QA', 'DONE'];
+  difficulties: string[] = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
+  progresses: string[] = ['BACKLOG', 'TO_DO', 'IN_PROGRESS', 'QA', 'DONE'];
 
   myControl = new FormControl();
   filteredOptions: Observable<User[]>;
 
-
-  constructor(private taskService: TaskService,
-              private userService: UserService, private router: Router) { }
-
-
+  constructor(
+    private taskService: TaskService,
+    private userService: UserService,
+    private router: Router) { }
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges
@@ -48,19 +45,18 @@ export class TaskComponent implements OnInit {
   }
 
   displayFn(user?: User): string | undefined {
-    return user ? user.displayedName : undefined;
+    return user ? user.displayName : undefined;
   }
 
   saveTask() {
     const user = this.myControl.value;
-    const task = new Task(null, this.nameTask, this.descriptionTask, this.sprint, this.dificulty, this.storyPoints,this.progress, user);
+    const task = new Task(null, this.nameTask, this.descriptionTask, this.sprint, this.difficulty, this.storyPoints, this.progress, user);
     this.taskService.saveTask(task)
       // .subscribe(result => console.log(result));
       .subscribe(result => console.log('ok'),
         error => console.log(error));
     //return to table
-   //this.router.navigateByUrl('/projects-overview');
-
-
+    //this.router.navigateByUrl('/projects-overview');
   }
+
 }

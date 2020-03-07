@@ -1,24 +1,43 @@
-<p>project-edit works!</p>
-
 <form *ngIf="project" class="example-form">
   <mat-form-field class="example-full-width">
-    <input matInput name="name" placeholder="Name" [(ngModel)]="project.name" >
+    <input [(ngModel)]="project.name" matInput name="name" placeholder="Name"/>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <textarea matInput name="description" placeholder="Description" [(ngModel)]="project.description" ></textarea>
+    <textarea
+      [(ngModel)]="project.description"
+      matInput
+      name="description"
+      placeholder="Description"
+    ></textarea>
   </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <input type="text" placeholder="Admin" aria-label="Admin" matInput [formControl]="myControl" [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{option.displayedName}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+      aria-label="Admin"
+      matInput
+      placeholder="Admin"
+      type="text"
+    />
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option
+        *ngFor="let option of filteredOptions | async"
+        [value]="option"
+      >
+        {{ option.displayName }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
 
-
-
-    <button mat-raised-button color="accent"  (click)="updateProject()" matTooltip="Salveaza modificarile"
-            aria-label="Button that displays a tooltip that has custom delays through a default config">Update</button>
+  <button
+    (click)="updateProject()"
+    aria-label="Button that displays a tooltip that has custom delays through a default config"
+    color="accent"
+    mat-raised-button
+    matTooltip="Salveaza modificarile"
+  >
+    Update
+  </button>
+</form>

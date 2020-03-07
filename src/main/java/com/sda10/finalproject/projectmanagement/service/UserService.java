@@ -1,6 +1,5 @@
 package com.sda10.finalproject.projectmanagement.service;
 
-
 import com.sda10.finalproject.projectmanagement.model.User;
 import com.sda10.finalproject.projectmanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class UserService {
 
     private final UserRepository userRepository;
@@ -21,15 +19,17 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public Optional<User> getUserById(Long id) {
+    public Optional<User> findById(Long id) {
         return userRepository.findById(id);
     }
 
-    public User createUser(User user) {
+    @Transactional
+    public User create(User user) {
         return userRepository.save(user);
     }
 
-    public User updateUser(Long id, User user) {
+    @Transactional
+    public User update(Long id, User user) {
         userRepository.findById(id)
                 .orElseThrow(RuntimeException::new);
 
@@ -37,15 +37,16 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void deleteUser(Long id) {
+    @Transactional
+    public void delete(Long id) {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(RuntimeException::new);
         userRepository.delete(existingUser);
     }
 
-    public Optional<User> searchUserByNameOrEmail(String name, String email) {
+    public Optional<User> findByNameOrEmail(String name, String email) {
         if (name != null) {
-            return userRepository.findByUserName(name);
+            return userRepository.findByUsername(name);
         }
         if (email != null) {
             return userRepository.findByEmail(email);
@@ -53,7 +54,7 @@ public class UserService {
         return Optional.empty();
     }
 
-    public List<User> searchByUserName(String name) {
-        return userRepository.findByUserNameContaining(name);
+    public List<User> findByUserName(String name) {
+        return userRepository.findByUsernameContaining(name);
     }
 }

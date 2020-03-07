@@ -10,10 +10,9 @@ import { Task } from 'src/app/shared/model/task';
 })
 export class TaskService {
 
+  private readonly TASK_API = `${environment.serverApiUrl}/api/tasks`;
 
-
-private readonly  TASK_API = `${environment.serverApiUrl}/api/tasks`;
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   saveTask(task: Task): Observable<Task> {
     return this.httpClient.post<Task>(this.TASK_API, task);
@@ -21,9 +20,9 @@ private readonly  TASK_API = `${environment.serverApiUrl}/api/tasks`;
 
   searchTaskByName(nameParam: string) {
     return this.httpClient.get<Task[]>(this.TASK_API + '/search', {
-    params: { name: nameParam }
-  });
+      params: { name: nameParam }
+    });
 
-}
+  }
 
 }

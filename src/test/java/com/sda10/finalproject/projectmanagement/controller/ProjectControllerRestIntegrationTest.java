@@ -1,9 +1,9 @@
 package com.sda10.finalproject.projectmanagement.controller;
 
-import com.sda10.finalproject.projectmanagement.RestIntegrationTest;
 import com.sda10.finalproject.projectmanagement.dto.ProjectDto;
 import com.sda10.finalproject.projectmanagement.dto.ProjectMapper;
 import com.sda10.finalproject.projectmanagement.dto.UserMapper;
+import com.sda10.finalproject.projectmanagement.integration.RestIntegrationTest;
 import com.sda10.finalproject.projectmanagement.model.Project;
 import com.sda10.finalproject.projectmanagement.model.Role;
 import com.sda10.finalproject.projectmanagement.model.User;
@@ -18,9 +18,9 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 
-import static com.sda10.finalproject.projectmanagement.controller.ProjectsController.API_PROJECTS;
+import static com.sda10.finalproject.projectmanagement.controller.ProjectController.API_PROJECTS;
 
-public class ProjectsControllerRestIntegrationTest extends RestIntegrationTest {
+public class ProjectControllerRestIntegrationTest extends RestIntegrationTest {
 
     @Autowired
     private ProjectRepository repository;
@@ -40,7 +40,7 @@ public class ProjectsControllerRestIntegrationTest extends RestIntegrationTest {
     public void givenProjectDetails_whenPostRequestIsReceived_ThenCreateNewProjectDetails() {
 
         User user = new User();
-        user.setUserName("raluca")
+        user.setUsername("raluca")
                     .setPassword("123")
                     .setRole(Role.ADMIN);
         user = userRepository.save(user);
@@ -62,7 +62,7 @@ public class ProjectsControllerRestIntegrationTest extends RestIntegrationTest {
     @Test
     public void givenExistingId_whenGetProjectById_ThenReturnProject() {
         User user = new User();
-        user.setUserName("raluca")
+        user.setUsername("raluca")
                 .setPassword("123")
                 .setRole(Role.ADMIN);
         user = userRepository.save(user);
@@ -87,7 +87,7 @@ public class ProjectsControllerRestIntegrationTest extends RestIntegrationTest {
     @Test
     public void givenProjectDetails_whenPutRequestIsReceived_ThenUpdateNewProjectDetails() {
         User user = new User();
-        user.setUserName("raluca")
+        user.setUsername("raluca")
                 .setPassword("123")
                 .setRole(Role.ADMIN);
         user = userRepository.save(user);
@@ -129,7 +129,7 @@ public class ProjectsControllerRestIntegrationTest extends RestIntegrationTest {
     @Test
     public void givenProjectDetails_whenDeleteRequestIsReceived_ThenProjectIsDeleted() {
         User user = new User();
-        user.setUserName("raluca")
+        user.setUsername("raluca")
                 .setPassword("123")
                 .setRole(Role.ADMIN);
         user = userRepository.save(user);

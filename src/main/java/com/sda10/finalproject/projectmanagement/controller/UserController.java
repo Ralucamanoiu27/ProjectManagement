@@ -20,9 +20,10 @@ import static com.sda10.finalproject.projectmanagement.controller.UserController
 public class UserController {
 
     public static final String API_USERS = "/api/users";
-    private final UserMapper userMapper;
     private final UserService userService;
 
+    // TODO: move mapper to service and perform transformation there
+    private final UserMapper userMapper;
 
     @Autowired
     public UserController(UserMapper userMapper, UserService userService) {
@@ -31,52 +32,55 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
-        User user = userService.getUserById(id)
-                .orElseThrow(NotFoundException::new);
+    public ResponseEntity<UserDto> findById(@PathVariable Long id) {
+        User user = userService.findById(id)
+                .orElseThrow(() -> new NotFoundException("user with id " + id + " not found"));
         UserDto response = userMapper.toDto(user);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto details) {
+    public ResponseEntity<UserDto> create(@RequestBody UserDto details) {
         User user = userMapper.toEntity(details);
-        user = userService.createUser(user);
+        user = userService.create(user);
         UserDto response = userMapper.toDto(user);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity updateUser(@PathVariable Long id, @RequestBody UserDto newDetails) {
+    public ResponseEntity update(@PathVariable Long id, @RequestBody UserDto newDetails) {
         User user = userMapper.toEntity(newDetails);
-        userService.updateUser(id, user);
+        userService.update(id, user);
         return new ResponseEntity<>(HttpStatus.OK);
 
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
+    public ResponseEntity delete(@PathVariable Long id) {
+        userService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    // TODO: create a different mapping in case you need findAll()
     @GetMapping
-    public ResponseEntity<UserDto> searchUserByNameOrEmail(
+    public ResponseEntity<UserDto> findByNameOrEmail(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String email) {
-        User user = userService.searchUserByNameOrEmail(name, email)
-                .orElseThrow(NotFoundException::new);
+        User user = userService.findByNameOrEmail(name, email)
+                .orElseThrow(() -> new NotFoundException("user with name " + name +
+                        "and email" + email + " not found"));
 
         UserDto response = userMapper.toDto(user);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    // TODO: convert to response entity of list of user dto
     @GetMapping("/search")
-    public List<UserDto> searchUserByNameOrEmail(@RequestParam(required = false) String name) {
-       return userService.searchByUserName(name)
-               .stream()
-               .map(userMapper::toDto)
-               .collect(Collectors.toList());
+    public List<UserDto> findByName(@RequestParam(required = false) String name) {
+        return userService.findByUserName(name)
+                .stream()
+                .map(userMapper::toDto)
+                .collect(Collectors.toList());
     }
 
 }

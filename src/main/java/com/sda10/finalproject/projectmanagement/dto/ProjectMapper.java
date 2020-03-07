@@ -14,17 +14,14 @@ public class ProjectMapper {
         this.userMapper = userMapper;
     }
 
-    public Project toEntity(ProjectDto projectDto){
-        Project project = new Project();
-
-
+    public Project toEntity(ProjectDto projectDto) {
         User user = userMapper.toEntity(projectDto.administrator);
 
+        Project project = new Project();
         project.setAdministrator(user);
         project.setId(projectDto.id);
         project.setName(projectDto.name);
         project.setDescription(projectDto.description);
-
 
         return project;
     }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SprintMapper {
+
     private final ProjectMapper projectMapper;
 
     public SprintMapper(ProjectMapper projectMapper) {
@@ -24,7 +25,7 @@ public class SprintMapper {
 
         return sprint;
     }
-/// de verificat
+
     public SprintDto toDto(Sprint sprint) {
         ProjectDto projectDto = projectMapper.toDto(sprint.getProject());
         return SprintDto.sprintDto()

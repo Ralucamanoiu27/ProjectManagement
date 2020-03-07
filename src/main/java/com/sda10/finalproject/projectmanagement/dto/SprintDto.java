@@ -1,28 +1,24 @@
 package com.sda10.finalproject.projectmanagement.dto;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class SprintDto {
 
-   public Long id;
+    public Long id;
 
+    // public ProjectDto projectDto;
 
-   // public ProjectDto projectDto;
-
-
-   public LocalDate dateFrom;
-   public LocalDate dateTo;
-   public String plannedStoryPoint;
-   public ProjectDto project;
+    public LocalDate dateFrom;
+    public LocalDate dateTo;
+    public String plannedStoryPoint;
+    public ProjectDto project;
 
     private SprintDto() {
-   }
+    }
+
     public static SprintDto sprintDto() {
-       return new SprintDto();
+        return new SprintDto();
     }
 
     public SprintDto setId(Long id) {
@@ -46,7 +42,6 @@ public class SprintDto {
     }
 
 
-
     public SprintDto setProjectDto(ProjectDto project) {
         this.project = project;
         return this;
@@ -59,7 +54,7 @@ public class SprintDto {
         if (o == null || getClass() != o.getClass()) return false;
         SprintDto sprintDto = (SprintDto) o;
         return Objects.equals(id, sprintDto.id) &&
-                Objects.equals(project, sprintDto.project)&&
+                Objects.equals(project, sprintDto.project) &&
                 Objects.equals(dateFrom, sprintDto.dateFrom) &&
                 Objects.equals(dateTo, sprintDto.dateTo) &&
                 Objects.equals(plannedStoryPoint, sprintDto.plannedStoryPoint);

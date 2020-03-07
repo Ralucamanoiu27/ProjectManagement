@@ -15,49 +15,47 @@ import static com.sda10.finalproject.projectmanagement.controller.TaskController
 @RestController
 @RequestMapping(API_TASKS)
 public class TaskController {
-    public static final String API_TASKS="/api/tasks";
-    //private final TaskController
 
+    public static final String API_TASKS = "/api/tasks";
+    private final TaskService taskService;
 
+    // TODO: move mapper to service and perform transformation there
+    private final TaskMapper taskMapper;
 
-        private final TaskMapper taskMapper;
-        private final TaskService taskService;
-
-
-        @Autowired
-        public TaskController(TaskMapper taskMapper, TaskService taskService) {
-            this.taskMapper = taskMapper;
-            this.taskService = taskService;
-        }
-
-        @GetMapping("/{id}")
-        public ResponseEntity<TaskDto> getTaskById(@PathVariable Long id) {
-            Task task =taskService.getTaskById(id)
-                    .orElseThrow(NotFoundException::new);
-            TaskDto response=taskMapper.toDto(task);
-            return  new ResponseEntity<>(response, HttpStatus.OK);
-        }
-
-        @PostMapping
-        public ResponseEntity<TaskDto> createUser (@RequestBody TaskDto details) {
-            Task task=taskMapper.toEntity(details);
-            task=taskService.createTask(task);
-            TaskDto response=taskMapper.toDto(task);
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        }
-
-        @PutMapping("/{id}")
-        public ResponseEntity updateTask(@PathVariable Long id, @RequestBody TaskDto newDetails){
-            Task task=taskMapper.toEntity(newDetails);
-            taskService.updateTask(id,task);
-            return new ResponseEntity<>(HttpStatus.OK);
-
-        }
-        @DeleteMapping("/{id}")
-        public ResponseEntity deleteTask(@PathVariable Long id) {
-            taskService.deleteTask(id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-
+    @Autowired
+    public TaskController(TaskMapper taskMapper, TaskService taskService) {
+        this.taskMapper = taskMapper;
+        this.taskService = taskService;
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TaskDto> findById(@PathVariable Long id) {
+        Task task = taskService.findById(id)
+                .orElseThrow(() -> new NotFoundException("task with id " + id + " not found"));
+        TaskDto response = taskMapper.toDto(task);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<TaskDto> create(@RequestBody TaskDto details) {
+        Task task = taskMapper.toEntity(details);
+        task = taskService.create(task);
+        TaskDto response = taskMapper.toDto(task);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity update(@PathVariable Long id, @RequestBody TaskDto newDetails) {
+        Task task = taskMapper.toEntity(newDetails);
+        taskService.update(id, task);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable Long id) {
+        taskService.deleteTask(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+}
 

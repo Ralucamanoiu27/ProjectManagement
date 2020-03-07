@@ -7,10 +7,10 @@ import java.util.Objects;
 import static com.sda10.finalproject.projectmanagement.model.Project.PROJECTS_TABLE;
 
 @Entity
-@Table(name=PROJECTS_TABLE)
+@Table(name = PROJECTS_TABLE)
 public class Project {
 
-    public static final String PROJECTS_TABLE="PROJECTS";
+    public static final String PROJECTS_TABLE = "PROJECTS";
 
     @Id
     @GeneratedValue
@@ -20,14 +20,11 @@ public class Project {
     @NotNull
     private String name;
 
-
-
     @Column
     private String description;
 
-
     @ManyToOne
-    @JoinColumn(name="administrator_id", referencedColumnName = "id")
+    @JoinColumn(name = "administrator_id", referencedColumnName = "id")
     @NotNull
     private User administrator;
 
@@ -63,7 +60,7 @@ public class Project {
     }
 
     public Project setAdministrator(User administrator) {
-        if(administrator.getRole()==Role.ADMIN) {
+        if (administrator.getRole() == Role.ADMIN) {
             this.administrator = administrator;
 
             return this;
@@ -86,6 +83,5 @@ public class Project {
     public int hashCode() {
         return Objects.hash(id, name, description, administrator);
     }
-
 
 }

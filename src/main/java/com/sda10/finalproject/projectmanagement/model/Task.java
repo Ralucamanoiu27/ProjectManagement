@@ -5,9 +5,10 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
-@Table (name=Task.TASK_TABLE)
+@Table(name = Task.TASK_TABLE)
 public class Task {
-    public static final String TASK_TABLE="TASKS";
+
+    public static final String TASK_TABLE = "TASKS";
 
     @Id
     @GeneratedValue
@@ -22,13 +23,13 @@ public class Task {
     private String descriptionTask;
 
     @ManyToOne
-    @JoinColumn(name="sprint_id", referencedColumnName = "id")
+    @JoinColumn(name = "sprint_id", referencedColumnName = "id")
     @NotNull
     private Sprint sprint;
 
     @Column
     @NotNull
-    private String dificulty;
+    private String difficulty;
 
     @Column
     @NotNull
@@ -38,11 +39,10 @@ public class Task {
     @NotNull
     private Progress progress;
 
-
     @ManyToOne
-    @JoinColumn(name="assignPerson_id", referencedColumnName = "id")
+    @JoinColumn(name = "assignPerson_id", referencedColumnName = "id")
     @NotNull
-    private User assignPerson; // users
+    private User assignedPerson;
 
     public Long getId() {
         return id;
@@ -71,12 +71,12 @@ public class Task {
         return this;
     }
 
-    public String getDificulty() {
-        return dificulty;
+    public String getDifficulty() {
+        return difficulty;
     }
 
-    public Task setDificulty(String dificulty) {
-        this.dificulty = dificulty;
+    public Task setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
         return this;
     }
 
@@ -106,14 +106,13 @@ public class Task {
         this.sprint = sprint;
     }
 
-    public User getAssignPerson() {
-        return assignPerson;
+    public User getAssignedPerson() {
+        return assignedPerson;
     }
 
-    public void setAssignPerson(User assignPerson) {
-        this.assignPerson = assignPerson;
+    public void setAssignedPerson(User assignedPerson) {
+        this.assignedPerson = assignedPerson;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -124,14 +123,14 @@ public class Task {
                 Objects.equals(nameTask, task.nameTask) &&
                 Objects.equals(descriptionTask, task.descriptionTask) &&
                 Objects.equals(sprint, task.sprint) &&
-                Objects.equals(dificulty, task.dificulty) &&
+                Objects.equals(difficulty, task.difficulty) &&
                 Objects.equals(storyPoints, task.storyPoints) &&
                 progress == task.progress &&
-                Objects.equals(assignPerson, task.assignPerson);
+                Objects.equals(assignedPerson, task.assignedPerson);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nameTask, descriptionTask, sprint, dificulty, storyPoints, progress, assignPerson);
+        return Objects.hash(id, nameTask, descriptionTask, sprint, difficulty, storyPoints, progress, assignedPerson);
     }
 }

@@ -4,7 +4,6 @@ import com.sda10.finalproject.projectmanagement.dto.ProjectDto;
 import com.sda10.finalproject.projectmanagement.dto.ProjectMapper;
 import com.sda10.finalproject.projectmanagement.exception.NotFoundException;
 import com.sda10.finalproject.projectmanagement.model.Project;
-import com.sda10.finalproject.projectmanagement.repository.ProjectRepository;
 import com.sda10.finalproject.projectmanagement.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,69 +13,63 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.sda10.finalproject.projectmanagement.controller.ProjectsController.API_PROJECTS;
-
+import static com.sda10.finalproject.projectmanagement.controller.ProjectController.API_PROJECTS;
 
 @RestController
 @RequestMapping(API_PROJECTS)
-public class ProjectsController {
+public class ProjectController {
 
+    public static final String API_PROJECTS = "/api/projects";
 
-
-    public static final String API_PROJECTS="/api/projects";
-    @Autowired
     private ProjectService projectService;
-    @Autowired
+
+    // TODO: move mapper to service and perform transformation there
     private ProjectMapper projectMapper;
 
-
+    @Autowired
+    public ProjectController(ProjectService projectService, ProjectMapper projectMapper) {
+        this.projectService = projectService;
+        this.projectMapper = projectMapper;
+    }
 
     @PostMapping()
     public ProjectDto createProject(@RequestBody ProjectDto projectDetails) {
-
         Project project = projectMapper.toEntity(projectDetails);
-
-        project = projectService.createProject(project);
+        project = projectService.save(project);
 
         return projectMapper.toDto(project);
-
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProjectDto> getProjectById(@PathVariable Long id) {
-        Project project = projectService.getProjectById(id)
-                .orElseThrow(NotFoundException::new);
+        Project project = projectService.findById(id)
+                .orElseThrow(() -> new NotFoundException("project with id " + id + " not found"));
 
         ProjectDto response = projectMapper.toDto(project);
-
-
         return new ResponseEntity<>(response, HttpStatus.OK);
-
     }
 
     @PutMapping("/{id}")
     public ResponseEntity updateProject(@PathVariable Long id, @RequestBody ProjectDto projectDetails) {
         Project project = projectMapper.toEntity(projectDetails);
-
-        projectService.updateProject(id, project);
+        projectService.update(id, project);
 
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteProject(@PathVariable Long id) {
-        projectService.deleteProject(id);
+        projectService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping
-    public List<ProjectDto> searchAll( ) {
-    return projectService.findAll()
-       .stream()
-       .map(projectMapper::toDto)
-               .collect(Collectors.toList());
-  }
+    public List<ProjectDto> searchAll() {
+        return projectService.findAll()
+                .stream()
+                .map(projectMapper::toDto)
+                .collect(Collectors.toList());
+    }
 
 //    @GetMapping
 //    public ResponseEntity<ProjectDto> searchProjectByNameProject(@RequestParam(required = false) String name) {
@@ -86,13 +79,12 @@ public class ProjectsController {
 //
 //    }
 
-//
-//    @GetMapping("/search")
-//    public List<ProjectDto> searchProjectByName(@RequestParam(required = false) String name) {
-//        return projectService.searchByProjectName(name)
-//                .stream()
-//                .map(projectMapper::toDto)
-//                .collect(Collectors.toList());
-//    }
+    @GetMapping("/search")
+    public List<ProjectDto> searchProjectByName(@RequestParam(required = false) String name) {
+        return projectService.findByName(name)
+                .stream()
+                .map(projectMapper::toDto)
+                .collect(Collectors.toList());
+    }
 
 }

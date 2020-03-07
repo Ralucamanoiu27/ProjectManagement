@@ -9,8 +9,8 @@ public class UserMapper {
     public User toEntity(UserDto userDto){
         User user = new User();
         user.setId(userDto.id);
-        user.setUserName(userDto.userName);
-        user.setDisplayedName(userDto.displayedName);
+        user.setUsername(userDto.username);
+        user.setDisplayName(userDto.displayName);
         user.setEmail(userDto.email);
         user.setPassword(userDto.password);
         user.setRole(userDto.role);
@@ -21,8 +21,8 @@ public class UserMapper {
     public UserDto toDto(User user) {
         return UserDto.userDto()
                 .setId(user.getId())
-                .setDisplayedName(user.getDisplayedName())
-                .setUserName(user.getUserName())
+                .setDisplayName(user.getDisplayName())
+                .setUsername(user.getUsername())
                 .setPassword(user.getPassword())
                 .setEmail(user.getEmail())
                 .setRole(user.getRole());

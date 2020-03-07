@@ -3,11 +3,11 @@ package com.sda10.finalproject.projectmanagement.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.sda10.finalproject.projectmanagement.RestIntegrationTest;
 import com.sda10.finalproject.projectmanagement.dto.ProjectDto;
 import com.sda10.finalproject.projectmanagement.dto.ProjectMapper;
 import com.sda10.finalproject.projectmanagement.dto.SprintDto;
 import com.sda10.finalproject.projectmanagement.dto.UserMapper;
+import com.sda10.finalproject.projectmanagement.integration.RestIntegrationTest;
 import com.sda10.finalproject.projectmanagement.model.Project;
 import com.sda10.finalproject.projectmanagement.model.Role;
 import com.sda10.finalproject.projectmanagement.model.Sprint;
@@ -56,7 +56,7 @@ public class SprintControllerRestIntegrationTest extends RestIntegrationTest {
     @Test
     public void givenSprintDateFromIsSmallerThanDateToAndIsNotOverLapping_whenCreateSprint_ThenTestOk() {
         User user = new User();
-        user.setUserName("gica")
+        user.setUsername("gica")
                 .setRole(Role.ADMIN)
                 .setPassword("6777");
         user = userRepository.save(user);
@@ -102,7 +102,7 @@ public class SprintControllerRestIntegrationTest extends RestIntegrationTest {
     @Test
     public void givenSprintDateFromIsBiggerThanDateTo_whenCreateSprint_ThenTestIsNotOk() {
         User user = new User();
-        user.setUserName("gica")
+        user.setUsername("gica")
                 .setRole(Role.ADMIN)
                 .setPassword("6777");
         user = userRepository.save(user);
@@ -130,7 +130,7 @@ public class SprintControllerRestIntegrationTest extends RestIntegrationTest {
     @Test
     public void givenSprintDateFromIsSmallerThanDateTo_whenCreateSprint_ThenTestIsNotOk() {
         User user = new User();
-        user.setUserName("gica")
+        user.setUsername("gica")
                 .setRole(Role.ADMIN)
                 .setPassword("6777");
         user = userRepository.save(user);
@@ -167,7 +167,7 @@ public class SprintControllerRestIntegrationTest extends RestIntegrationTest {
     @Test
     public void givenExistingId_whenGetSprintById_ThenReturnSprint() {
         User user = new User();
-        user.setUserName("gica")
+        user.setUsername("gica")
                 .setRole(Role.ADMIN)
                 .setPassword("6777");
         user = userRepository.save(user);
@@ -214,7 +214,7 @@ public class SprintControllerRestIntegrationTest extends RestIntegrationTest {
     @Test
     public void givenSprint_whenDeleteRequestIsReceived_ThenSprintDeleted() {
         User user = new User();
-        user.setUserName("raluca")
+        user.setUsername("raluca")
                 .setPassword("123")
                 .setRole(Role.ADMIN);
         user = userRepository.save(user);
@@ -252,7 +252,7 @@ public class SprintControllerRestIntegrationTest extends RestIntegrationTest {
     @Test
     public void givenSprint_whenPutRequestIsReceived_ThenUpdateNewSprint() {
         User user = new User();
-        user.setUserName("raluca")
+        user.setUsername("raluca")
                 .setPassword("123")
                 .setRole(Role.ADMIN);
         user = userRepository.save(user);

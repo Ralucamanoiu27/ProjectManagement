@@ -1,31 +1,48 @@
-<p>users works!</p>
 <form class="example-form">
   <mat-form-field class="example-full-width">
-    <input matInput name="userName" placeholder="UserName" [(ngModel)]="userName" >
+    <input
+      [(ngModel)]="username"
+      matInput
+      name="username"
+      placeholder="Username"
+    />
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <textarea matInput name="password" placeholder="password" [(ngModel)]="password" ></textarea>
+    <textarea
+      [(ngModel)]="password"
+      matInput
+      name="password"
+      placeholder="Password"
+    ></textarea>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <textarea matInput name="email" placeholder="email" [(ngModel)]="email" ></textarea>
+    <textarea
+      [(ngModel)]="email"
+      matInput
+      name="email"
+      placeholder="Email"
+    ></textarea>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <textarea matInput name="displayedName" placeholder="displayedName" [(ngModel)]="displayedName" ></textarea>
+    <textarea
+      [(ngModel)]="displayName"
+      matInput
+      name="displayName"
+      placeholder="Display name"
+    ></textarea>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>role</mat-label>
-    <mat-select [(value)]="role" >
-      <mat-option *ngFor="let role of roles" [value]="role" >
-        {{role}}
+    <mat-select [(value)]="role">
+      <mat-option *ngFor="let role of roles" [value]="role">
+        {{ role }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
   <button mat-raised-button color="accent" (click)="saveUser()">Create</button>
-
-
 </form>

@@ -5,19 +5,19 @@ import com.sda10.finalproject.projectmanagement.model.Progress;
 import java.util.Objects;
 
 public class TaskDto {
+
     public Long id;
     public String nameTask;
     public String descriptionTask;
     public SprintDto sprint;
-    public String dificulty;
+    public String difficulty;
     public String storyPoints;
-    // @ManyToOne
     public Progress progress;
-    public UserDto assignPerson; // users
+    public UserDto assignedPerson;
 
     private TaskDto() {
-
     }
+
     public static TaskDto taskDto() {
         return new TaskDto();
     }
@@ -42,8 +42,8 @@ public class TaskDto {
         return this;
     }
 
-    public TaskDto setDificulty(String dificulty) {
-        this.dificulty = dificulty;
+    public TaskDto setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
         return this;
     }
 
@@ -57,8 +57,8 @@ public class TaskDto {
         return this;
     }
 
-    public TaskDto setAssignPerson(UserDto assignPerson) {
-        this.assignPerson = assignPerson;
+    public TaskDto setAssignedPerson(UserDto assignedPerson) {
+        this.assignedPerson = assignedPerson;
         return this;
     }
 
@@ -71,14 +71,14 @@ public class TaskDto {
                 Objects.equals(nameTask, taskDto.nameTask) &&
                 Objects.equals(descriptionTask, taskDto.descriptionTask) &&
                 Objects.equals(sprint, taskDto.sprint) &&
-                Objects.equals(dificulty, taskDto.dificulty) &&
+                Objects.equals(difficulty, taskDto.difficulty) &&
                 Objects.equals(storyPoints, taskDto.storyPoints) &&
                 progress == taskDto.progress &&
-                Objects.equals(assignPerson, taskDto.assignPerson);
+                Objects.equals(assignedPerson, taskDto.assignedPerson);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nameTask, descriptionTask, sprint, dificulty, storyPoints, progress, assignPerson);
+        return Objects.hash(id, nameTask, descriptionTask, sprint, difficulty, storyPoints, progress, assignedPerson);
     }
 }

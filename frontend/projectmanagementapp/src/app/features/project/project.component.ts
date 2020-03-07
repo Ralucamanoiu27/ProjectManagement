@@ -42,7 +42,7 @@ export class ProjectComponent implements OnInit {
   }
 
   displayFn(user?: User): string | undefined {
-    return user ? user.displayedName : undefined;
+    return user ? user.displayName : undefined;
   }
 
   saveProject() {

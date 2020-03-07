@@ -1,10 +1,9 @@
 package com.sda10.finalproject.projectmanagement.dto;
 
-
-
 import java.util.Objects;
 
 public class ProjectDto {
+
     public Long id;
     public String name;
     public String description;

@@ -5,8 +5,6 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {User} from "../../shared/model/user";
-
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +22,6 @@ export class ProjectService {
 
   getAllProjects(): Observable<Project[]> {
     return this.httpClient.get<Project[]>(this.PROJECT_API);
-
   }
 
   deleteProject(id: number): Observable<Project> {
@@ -43,7 +40,7 @@ export class ProjectService {
 
   searchProjectByName(nameParam: string) {
     return this.httpClient.get<Project[]>(this.PROJECT_API + '/search', {
-      params: {name: nameParam}
+      params: { name: nameParam }
     });
 
   }

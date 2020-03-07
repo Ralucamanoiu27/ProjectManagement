@@ -7,7 +7,7 @@ export class Task {
               public nameTask: string,
               public descriptionTask: string,
               public sprint: Sprint,
-              public dificulty: string,
+              public difficulty: string,
               public storyPoints: string,
               public progress: string,
               public assignPerson: User){

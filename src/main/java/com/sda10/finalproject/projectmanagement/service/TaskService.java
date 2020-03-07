@@ -1,5 +1,6 @@
 package com.sda10.finalproject.projectmanagement.service;
 
+import com.sda10.finalproject.projectmanagement.exception.NotFoundException;
 import com.sda10.finalproject.projectmanagement.model.Task;
 import com.sda10.finalproject.projectmanagement.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class TaskService {
+
     private final TaskRepository taskRepository;
 
     @Autowired
@@ -18,24 +20,24 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public Task createTask(Task task) {
+    public Task create(Task task) {
         return taskRepository.save(task);
     }
 
-    public Optional<Task> getTaskById(Long id) {
+    public Optional<Task> findById(Long id) {
         return taskRepository.findById(id);
     }
 
-    public Task updateTask(Long id, Task task) {
+    public Task update(Long id, Task task) {
         Optional<Task> taskOptional = taskRepository.findById(id);
-
         if (taskOptional.isPresent()) {
             task.setId(id);
             return taskRepository.save(task);
         } else {
-            throw new RuntimeException("Project with id does not exist: " + id);
+            throw new NotFoundException("Task with id does not exist: " + id);
         }
     }
+
     public void deleteTask (Long id) {
         Task existingTask = taskRepository
                 .findById(id)

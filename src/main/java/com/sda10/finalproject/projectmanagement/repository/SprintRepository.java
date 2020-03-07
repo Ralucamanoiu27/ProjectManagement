@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SprintRepository extends JpaRepository<Sprint,Long> {
+public interface SprintRepository extends JpaRepository<Sprint, Long> {
 
-    List<Sprint> findSprintsByProject (Project project);
+    List<Sprint> findSprintsByProject(Project project);
 }

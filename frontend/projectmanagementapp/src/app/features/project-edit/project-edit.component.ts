@@ -41,12 +41,12 @@ export class ProjectEditComponent implements OnInit {
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),
-        map(value => typeof value === 'string' ? value : value.userName),
+        map(value => typeof value === 'string' ? value : value.username),
         flatMap(name => this.userService.searchUserByName(name))
       );
   }
   displayFn(user?: User): string | undefined {
-    return user ? user.displayedName : undefined;
+    return user ? user.displayName : undefined;
   }
   updateProject(){
     this.project.administrator = this.myControl.value;

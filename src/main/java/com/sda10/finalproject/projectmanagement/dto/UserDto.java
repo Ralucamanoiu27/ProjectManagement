@@ -1,41 +1,36 @@
 package com.sda10.finalproject.projectmanagement.dto;
 
 import com.sda10.finalproject.projectmanagement.model.Role;
-import com.sda10.finalproject.projectmanagement.model.User;
 
 import java.util.Objects;
 
 public class UserDto {
 
-
-
-    public String userName;
-
-    public String password;
-
-    public String email;
-
-    public String displayedName;
-
-    public Role role;
-
     public Long id;
+    public String username;
+    public String password;
+    public String email;
+    public String displayName;
+    public Role role;
 
     private UserDto() {
     }
 
-    public static UserDto userDto(){return  new UserDto();}
+    public static UserDto userDto() {
+        return new UserDto();
+    }
 
     public UserDto setId(Long id) {
         this.id = id;
         return this;
     }
-    public String getUserName() {
-        return userName;
+
+    public String getUsername() {
+        return username;
     }
 
-    public UserDto setUserName(String userName) {
-        this.userName = userName;
+    public UserDto setUsername(String username) {
+        this.username = username;
         return this;
     }
 
@@ -57,12 +52,12 @@ public class UserDto {
         return this;
     }
 
-    public String getDisplayedName() {
-        return displayedName;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public UserDto setDisplayedName(String displayedName) {
-        this.displayedName = displayedName;
+    public UserDto setDisplayName(String displayName) {
+        this.displayName = displayName;
         return this;
     }
 
@@ -84,16 +79,17 @@ public class UserDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserDto userDto = (UserDto) o;
-        return Objects.equals(userName, userDto.userName) &&
+        return Objects.equals(username, userDto.username) &&
                 Objects.equals(password, userDto.password) &&
                 Objects.equals(email, userDto.email) &&
-                Objects.equals(displayedName, userDto.displayedName) &&
+                Objects.equals(displayName, userDto.displayName) &&
                 role == userDto.role &&
                 Objects.equals(id, userDto.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName, password, email, displayedName, role, id);
+        return Objects.hash(username, password, email, displayName, role, id);
     }
+
 }

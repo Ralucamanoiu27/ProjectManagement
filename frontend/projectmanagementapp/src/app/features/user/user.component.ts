@@ -8,19 +8,21 @@ import { UserService } from './user.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  userName: string;
+
+  username: string;
   password: string;
   email: string;
-  displayedName: string;
+  displayName: string;
   role: string;
   roles: string[] = ['USER', 'ADMIN'];
+  
   constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
 
   saveUser() {
-    const user = new User(null, this.userName, this.password, this.email, this.displayedName, this.role);
+    const user = new User(null, this.username, this.password, this.email, this.displayName, this.role);
 
     this.userService.saveUser(user)
       .subscribe(result => console.log(result));
