@@ -41,11 +41,11 @@ public class TaskMapper {
                 .setId(task.getId())
                 .setNameTask(task.getNameTask())
                 .setDescriptionTask(task.getDescriptionTask())
+                .setSprint(sprintDto)
                 .setDifficulty(task.getDifficulty())
                 .setProgress(task.getProgress())
                 .setStoryPoints(task.getStoryPoints())
-                .setAssignedPerson(userDto)
-                .setSprint(sprintDto);
+                .setAssignedPerson(userDto);
     }
 
 }

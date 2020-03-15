@@ -1,5 +1,6 @@
 package com.sda10.finalproject.projectmanagement.controller;
 
+import com.sda10.finalproject.projectmanagement.dto.ProjectDto;
 import com.sda10.finalproject.projectmanagement.dto.SprintDto;
 import com.sda10.finalproject.projectmanagement.dto.SprintMapper;
 import com.sda10.finalproject.projectmanagement.exception.NotFoundException;
@@ -9,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.sda10.finalproject.projectmanagement.controller.SprintController.API_SPRINT;
 
@@ -55,6 +59,22 @@ public class SprintController {
     public ResponseEntity delete(@PathVariable Long id) {
         sprintService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping
+    public List<SprintDto> findAll() {
+        return sprintService.findAll()
+                .stream()
+                .map(sprintMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/search")
+    public List<SprintDto> findByName(@RequestParam(required = false) String name) {
+        return sprintService.findByName(name)
+                .stream()
+                .map(sprintMapper::toDto)
+                .collect(Collectors.toList());
     }
 
 }

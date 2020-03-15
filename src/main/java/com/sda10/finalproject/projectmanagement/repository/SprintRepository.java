@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface SprintRepository extends JpaRepository<Sprint, Long> {
 
-    List<Sprint> findSprintsByProject(Project project);
+   List<Sprint> findByProject(Project project);
+    List<Sprint> findByNameContaining(String name);
 }

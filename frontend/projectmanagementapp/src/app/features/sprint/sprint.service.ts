@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { environment } from "../../../environments/environment";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { Sprint } from "../../shared/model/sprint";
-import { User } from "../../shared/model/user";
-import { Project } from "../../shared/model/project";
+import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Sprint } from '../../shared/model/sprint';
+import { User } from '../../shared/model/user';
+import { Project } from '../../shared/model/project';
 
 @Injectable({
   providedIn: 'root'
@@ -36,4 +36,10 @@ export class SprintService {
     return this.httpClient.put<Sprint>(this.SPRINT_API + `/${id}`, sprint);
   }
 
+  searchByName(nameParam: string) {
+    return this.httpClient.get<Sprint[]>(this.SPRINT_API + '/search', {
+      params: { name: nameParam }
+    });
+  }
+  
 }

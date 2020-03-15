@@ -29,7 +29,7 @@ public class Task {
 
     @Column
     @NotNull
-    private String difficulty;
+    private Difficulty difficulty;
 
     @Column
     @NotNull
@@ -71,11 +71,11 @@ public class Task {
         return this;
     }
 
-    public String getDifficulty() {
+    public Difficulty getDifficulty() {
         return difficulty;
     }
 
-    public Task setDifficulty(String difficulty) {
+    public Task setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
         return this;
     }
@@ -102,16 +102,19 @@ public class Task {
         return sprint;
     }
 
-    public void setSprint(Sprint sprint) {
+    public Task setSprint(Sprint sprint) {
+
         this.sprint = sprint;
+        return this;
     }
 
     public User getAssignedPerson() {
         return assignedPerson;
     }
 
-    public void setAssignedPerson(User assignedPerson) {
+    public Task setAssignedPerson(User assignedPerson) {
         this.assignedPerson = assignedPerson;
+        return this;
     }
 
     @Override
@@ -123,7 +126,7 @@ public class Task {
                 Objects.equals(nameTask, task.nameTask) &&
                 Objects.equals(descriptionTask, task.descriptionTask) &&
                 Objects.equals(sprint, task.sprint) &&
-                Objects.equals(difficulty, task.difficulty) &&
+                difficulty == task.difficulty &&
                 Objects.equals(storyPoints, task.storyPoints) &&
                 progress == task.progress &&
                 Objects.equals(assignedPerson, task.assignedPerson);

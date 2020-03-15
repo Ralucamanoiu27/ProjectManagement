@@ -26,7 +26,8 @@ import {
   MatProgressBarModule,
   MatSidenavModule,
   MatAutocompleteModule,
-  MatTableModule
+  MatTableModule, 
+  MatNativeDateModule
 } from '@angular/material';
 @NgModule({
   declarations: [],

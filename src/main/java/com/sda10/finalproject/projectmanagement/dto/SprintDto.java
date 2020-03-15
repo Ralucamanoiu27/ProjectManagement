@@ -8,11 +8,12 @@ public class SprintDto {
     public Long id;
 
     // public ProjectDto projectDto;
-
+    public String name;
     public LocalDate dateFrom;
     public LocalDate dateTo;
     public String plannedStoryPoint;
     public ProjectDto project;
+
 
     private SprintDto() {
     }
@@ -23,6 +24,11 @@ public class SprintDto {
 
     public SprintDto setId(Long id) {
         this.id = id;
+        return this;
+    }
+
+    public SprintDto setName(String name) {
+        this.name = name;
         return this;
     }
 
@@ -47,13 +53,13 @@ public class SprintDto {
         return this;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SprintDto sprintDto = (SprintDto) o;
         return Objects.equals(id, sprintDto.id) &&
+                Objects.equals(name, sprintDto.name)&&
                 Objects.equals(project, sprintDto.project) &&
                 Objects.equals(dateFrom, sprintDto.dateFrom) &&
                 Objects.equals(dateTo, sprintDto.dateTo) &&
@@ -62,6 +68,6 @@ public class SprintDto {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, project, dateFrom, dateTo, plannedStoryPoint);
+        return Objects.hash(id, name, project, dateFrom, dateTo, plannedStoryPoint);
     }
 }

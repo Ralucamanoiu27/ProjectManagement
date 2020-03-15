@@ -1,13 +1,12 @@
 package com.sda10.finalproject.projectmanagement.config;
 
-import com.sda10.finalproject.projectmanagement.model.Project;
-import com.sda10.finalproject.projectmanagement.model.Role;
-import com.sda10.finalproject.projectmanagement.model.Sprint;
-import com.sda10.finalproject.projectmanagement.model.User;
+import com.sda10.finalproject.projectmanagement.model.*;
 import com.sda10.finalproject.projectmanagement.repository.ProjectRepository;
 import com.sda10.finalproject.projectmanagement.repository.SprintRepository;
+import com.sda10.finalproject.projectmanagement.repository.TaskRepository;
 import com.sda10.finalproject.projectmanagement.repository.UserRepository;
 import com.sda10.finalproject.projectmanagement.service.SprintService;
+import com.sda10.finalproject.projectmanagement.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +27,7 @@ public class MockDataConfig {
     private SprintRepository sprintRepository;
 
     @Autowired
-    private SprintService sprintService;
+    private TaskRepository taskRepository;
 
     @Bean
     public CommandLineRunner mockData() {
@@ -37,7 +36,9 @@ public class MockDataConfig {
 
             Project savedProject = projectRepository.save(createProject(savedUser));
 
-            sprintRepository.save(createSprint(savedProject));
+            Sprint savedSprint = sprintRepository.save(createSprint(savedProject));
+
+            taskRepository.save(createTask(savedSprint, savedUser));
         };
     }
 
@@ -61,10 +62,22 @@ public class MockDataConfig {
 
     private Sprint createSprint(Project project) {
         Sprint sprint = new Sprint();
+        sprint.setName("sprint1");
         sprint.setDateFrom(LocalDate.now());
         sprint.setDateTo(LocalDate.now().plusDays(1));
         sprint.setPlannedStoryPoint("1");
         sprint.setProject(project);
         return sprint;
+    }
+    private Task createTask(Sprint sprint, User user){
+        Task task = new Task();
+        task.setNameTask("task1");
+        task.setDescriptionTask("test task");
+        task.setSprint(sprint);
+        task.setDifficulty(Difficulty.FOUR);
+        task.setStoryPoints("1");
+        task.setProgress(Progress.IN_PROGRESS);
+        task.setAssignedPerson(user);
+        return task;
     }
 }

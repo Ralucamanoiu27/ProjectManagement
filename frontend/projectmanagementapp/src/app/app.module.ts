@@ -16,6 +16,10 @@ import { SprintComponent } from './features/sprint/sprint.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { TaskComponent } from './features/task/task.component';
+import { SprintsOverviewComponent } from './features/sprints-overview/sprints-overview.component';
+import { TasksOverviewComponent } from './features/tasks-overview/tasks-overview.component';
+import { RouterModule, RouterState} from '@angular/router';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,9 @@ import { TaskComponent } from './features/task/task.component';
     ProjectsOverviewComponent,
     ProjectEditComponent,
     SprintComponent,
-    TaskComponent
+    TaskComponent,
+    SprintsOverviewComponent,
+    TasksOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +43,12 @@ import { TaskComponent } from './features/task/task.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatDatepickerModule,
-    MatInputModule
+    MatInputModule,
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule);

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Task } from 'src/app/shared/model/task';
 import { startWith, map, flatMap } from 'rxjs/operators';
 import { Sprint } from 'src/app/shared/model/sprint';
+import { SprintService } from '../sprint/sprint.service';
 
 @Component({
   selector: 'app-task',
@@ -26,31 +27,50 @@ export class TaskComponent implements OnInit {
 
   difficulties: string[] = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
   progresses: string[] = ['BACKLOG', 'TO_DO', 'IN_PROGRESS', 'QA', 'DONE'];
-
+  
   myControl = new FormControl();
-  filteredOptions: Observable<User[]>;
+  myControlTwo = new FormControl();
 
+  filteredOptions: Observable<User[]>;
+  filteredOptionsTwo: Observable<Sprint[]>;
+  
   constructor(
     private taskService: TaskService,
     private userService: UserService,
+    private sprintService: SprintService,
     private router: Router) { }
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => typeof value === 'string' ? value : value.name),
-        flatMap(name => this.userService.searchUserByName(name))
-      );
-  }
+   
 
+    this.filteredOptionsTwo = this.myControlTwo.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => typeof value === 'string' ? value : value.name),
+      flatMap(name => this.sprintService.searchByName(name))
+    );
+    this.filteredOptions = this.myControl.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => typeof value === 'string' ? value : value.name),
+      flatMap(name => this.userService.searchUserByName(name))
+    );
+
+  }
+  displayFnTwo(sprint?: Sprint): string | undefined {
+    return sprint ? sprint.name : undefined;
+  }
   displayFn(user?: User): string | undefined {
     return user ? user.displayName : undefined;
   }
 
+
+
+
   saveTask() {
+    const sprint = this.myControlTwo.value;
     const user = this.myControl.value;
-    const task = new Task(null, this.nameTask, this.descriptionTask, this.sprint, this.difficulty, this.storyPoints, this.progress, user);
+    const task = new Task(null, this.nameTask, this.descriptionTask, sprint, this.difficulty, this.storyPoints, this.progress, user);
     this.taskService.saveTask(task)
       // .subscribe(result => console.log(result));
       .subscribe(result => console.log('ok'),

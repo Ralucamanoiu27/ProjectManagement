@@ -17,6 +17,10 @@ public class Sprint {
 
     @Column
     @NotNull
+    private String name;
+
+    @Column
+    @NotNull
     private LocalDate dateFrom;
 
     @Column
@@ -35,9 +39,8 @@ public class Sprint {
         return id;
     }
 
-    public Sprint setId(Long id) {
-        this.id = id;
-        return this;
+    public String getName() {
+        return name;
     }
 
     public Project getProject() {
@@ -54,6 +57,16 @@ public class Sprint {
 
     public String getPlannedStoryPoint() {
         return plannedStoryPoint;
+    }
+
+    public Sprint setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Sprint setName(String name) {
+        this.name = name;
+        return this;
     }
 
     public Sprint setProject(Project project) {
@@ -76,20 +89,22 @@ public class Sprint {
         return this;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Sprint sprint = (Sprint) o;
         return Objects.equals(id, sprint.id) &&
+                Objects.equals(name, sprint.name)&&
+                Objects.equals(project, sprint.project)&&
                 Objects.equals(dateFrom, sprint.dateFrom) &&
                 Objects.equals(dateTo, sprint.dateTo) &&
-                Objects.equals(plannedStoryPoint, sprint.plannedStoryPoint) &&
-                Objects.equals(project, sprint.project);
+                Objects.equals(plannedStoryPoint, sprint.plannedStoryPoint);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, dateFrom, dateTo, plannedStoryPoint, project);
+        return Objects.hash(id, name,  project, dateFrom, dateTo, plannedStoryPoint);
     }
 }

@@ -1,5 +1,6 @@
 package com.sda10.finalproject.projectmanagement.dto;
 
+import com.sda10.finalproject.projectmanagement.model.Difficulty;
 import com.sda10.finalproject.projectmanagement.model.Progress;
 
 import java.util.Objects;
@@ -10,7 +11,7 @@ public class TaskDto {
     public String nameTask;
     public String descriptionTask;
     public SprintDto sprint;
-    public String difficulty;
+    public Difficulty difficulty;
     public String storyPoints;
     public Progress progress;
     public UserDto assignedPerson;
@@ -42,7 +43,7 @@ public class TaskDto {
         return this;
     }
 
-    public TaskDto setDifficulty(String difficulty) {
+    public TaskDto setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
         return this;
     }
@@ -71,7 +72,7 @@ public class TaskDto {
                 Objects.equals(nameTask, taskDto.nameTask) &&
                 Objects.equals(descriptionTask, taskDto.descriptionTask) &&
                 Objects.equals(sprint, taskDto.sprint) &&
-                Objects.equals(difficulty, taskDto.difficulty) &&
+                difficulty == taskDto.difficulty &&
                 Objects.equals(storyPoints, taskDto.storyPoints) &&
                 progress == taskDto.progress &&
                 Objects.equals(assignedPerson, taskDto.assignedPerson);

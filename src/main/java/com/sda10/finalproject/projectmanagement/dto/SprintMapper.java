@@ -18,10 +18,11 @@ public class SprintMapper {
 
         Project project = projectMapper.toEntity(sprintDto.project);
 
-        sprint.setProject(project)
-                .setDateFrom(sprintDto.dateFrom)
-                .setDateTo(sprintDto.dateTo)
-                .setPlannedStoryPoint(sprintDto.plannedStoryPoint);
+        sprint.setProject(project);
+        sprint.setName(sprintDto.name);
+        sprint.setDateFrom(sprintDto.dateFrom);
+        sprint.setDateTo(sprintDto.dateTo);
+        sprint.setPlannedStoryPoint(sprintDto.plannedStoryPoint);
 
         return sprint;
     }
@@ -30,10 +31,12 @@ public class SprintMapper {
         ProjectDto projectDto = projectMapper.toDto(sprint.getProject());
         return SprintDto.sprintDto()
                 .setId(sprint.getId())
+                .setName(sprint.getName())
+                .setProjectDto(projectDto)
                 .setDateFrom(sprint.getDateFrom())
                 .setDateTo(sprint.getDateTo())
-                .setPlannedStoryPoint(sprint.getPlannedStoryPoint())
-                .setProjectDto(projectDto);
+                .setPlannedStoryPoint(sprint.getPlannedStoryPoint());
+
     }
 }
 

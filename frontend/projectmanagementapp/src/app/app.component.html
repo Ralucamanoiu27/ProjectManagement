@@ -297,17 +297,32 @@
 
 <!-- Toolbar -->
 <mat-toolbar>
-  <a mat-button routerLink="/">My App</a>
+  <!--  <a mat-button routerLink="/">My App</a>
   <a mat-button routerLink="/projects-overview">Projects Overview</a>
   <a mat-button routerLink="/user">Creare user</a>
-  <a mat-button routerLink="/sprint">Creare sprint</a>
-  
+  <a mat-button routerLink="/sprint">Creare sprint</a> -->
+<div>
+  <button mat-button [matMenuTriggerFor]="menu">Menu</button> 
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="/">My App</button>
+  <button mat-menu-item routerLink="/projects-overview">Projects Overview</button>
+  <button mat-menu-item routerLink="/user">Create user</button>
+  <button mat-menu-item routerLink="/sprint">Create sprint</button>
+  <button mat-menu-item routerLink="/task">Create task</button>
+  <button mat-menu-item routerLink="/sprints-overview">Sprints Overview</button>
+</mat-menu>
+</div>
+
 </mat-toolbar>
 
 
 <div class="content" role="main">
-
+  <div class="List">
   <router-outlet></router-outlet>
+  </div>
+  <!-- <div class="List">
+    <router-outlet name="sprints-overview"></router-outlet>
+  </div> -->
 
 </div>
 

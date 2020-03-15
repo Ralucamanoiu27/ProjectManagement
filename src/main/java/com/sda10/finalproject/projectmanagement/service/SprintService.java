@@ -1,6 +1,8 @@
 package com.sda10.finalproject.projectmanagement.service;
 
+import com.sda10.finalproject.projectmanagement.model.Project;
 import com.sda10.finalproject.projectmanagement.model.Sprint;
+import com.sda10.finalproject.projectmanagement.model.User;
 import com.sda10.finalproject.projectmanagement.repository.SprintRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +22,16 @@ public class SprintService {
         this.sprintRepository = sprintRepository;
     }
 
+    public List<Sprint> findAll() {
+        return sprintRepository.findAll();
+    }
+
     public Optional<Sprint> findById(Long id) {
         return sprintRepository.findById(id);
+    }
+
+    public List<Sprint> findByName(String name) {
+        return sprintRepository.findByNameContaining(name);
     }
 
     public Sprint save(Sprint sprint) {
@@ -35,7 +45,7 @@ public class SprintService {
     }
 
     private boolean sprintOverLapsWithExistingSprint(Sprint sprint) {
-        List<Sprint> existingSprints = sprintRepository.findSprintsByProject(sprint.getProject());
+        List<Sprint> existingSprints = sprintRepository.findByProject(sprint.getProject());
         for (Sprint existingSprint : existingSprints) {
             if (sprint.getDateFrom().isAfter(existingSprint.getDateFrom())
                     && sprint.getDateFrom().isBefore(existingSprint.getDateTo())) {

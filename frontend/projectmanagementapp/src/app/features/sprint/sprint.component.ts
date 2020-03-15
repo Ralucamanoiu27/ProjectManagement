@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Project } from './../../shared/model/project';
-import {FormControl} from "@angular/forms";
-import {ProjectService} from "../project/project.service";
+import {FormControl} from '@angular/forms';
+import {ProjectService} from '../project/project.service';
 import { Observable } from 'rxjs';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 
-import {SprintService} from "./sprint.service";
-import {Sprint} from "../../shared/model/sprint";
-import {flatMap, map, startWith} from "rxjs/operators";
+import {SprintService} from './sprint.service';
+import {Sprint} from '../../shared/model/sprint';
+import {flatMap, map, startWith} from 'rxjs/operators';
 import { UserService } from '../user/user.service';
 
 
@@ -25,7 +25,7 @@ import { UserService } from '../user/user.service';
 })
 
 export class SprintComponent implements OnInit {
-
+  name: string;
   project: Project;
   dateFrom: Date;
   dateTo: Date;
@@ -39,7 +39,6 @@ export class SprintComponent implements OnInit {
 
   constructor(private sprintService: SprintService,
               private projectService: ProjectService, 
-              private userService: UserService, 
               private router: Router) { }
 
               //copiezi de la porject mapp
@@ -62,7 +61,7 @@ export class SprintComponent implements OnInit {
 
   saveSprint() {
     const project = this.myControl.value;
-    const sprint = new Sprint(null, project, this.dateFrom, this.dateTo, this.plannedStoryPoint );
+    const sprint = new Sprint(null, this.name, project, this.dateFrom, this.dateTo, this.plannedStoryPoint );
     this.sprintService.saveSprint(sprint)
       // .subscribe(result => console.log(result));
       .subscribe(result => console.log('ok'),
