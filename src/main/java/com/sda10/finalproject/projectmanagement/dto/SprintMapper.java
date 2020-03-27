@@ -18,6 +18,7 @@ public class SprintMapper {
 
         Project project = projectMapper.toEntity(sprintDto.project);
 
+        sprint.setId(sprintDto.id);
         sprint.setProject(project);
         sprint.setName(sprintDto.name);
         sprint.setDateFrom(sprintDto.dateFrom);

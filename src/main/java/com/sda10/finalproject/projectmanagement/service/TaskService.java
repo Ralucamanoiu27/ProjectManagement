@@ -1,8 +1,12 @@
 package com.sda10.finalproject.projectmanagement.service;
 
 import com.sda10.finalproject.projectmanagement.exception.NotFoundException;
+import com.sda10.finalproject.projectmanagement.model.Sprint;
 import com.sda10.finalproject.projectmanagement.model.Task;
+import com.sda10.finalproject.projectmanagement.model.User;
+import com.sda10.finalproject.projectmanagement.repository.SprintRepository;
 import com.sda10.finalproject.projectmanagement.repository.TaskRepository;
+import com.sda10.finalproject.projectmanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +18,21 @@ import java.util.Optional;
 public class TaskService {
 
     private final TaskRepository taskRepository;
+    private final UserRepository  userRepository;
+    private final SprintRepository sprintRepository;
 
     @Autowired
-    public TaskService(TaskRepository taskRepository) {
+    public TaskService(TaskRepository taskRepository, UserRepository userRepository, SprintRepository sprintRepository) {
         this.taskRepository = taskRepository;
+        this.userRepository = userRepository;
+        this.sprintRepository = sprintRepository;
     }
 
     public Task create(Task task) {
-        return taskRepository.save(task);
+        Optional<User> user = userRepository.findById(task.getAssignedPerson().getId());
+        Optional<Sprint> sprint = sprintRepository.findById(task.getSprint().getId());
+
+        return taskRepository.save(task.setAssignedPerson(user.get()).setSprint(sprint.get()));
     }
 
     public Optional<Task> findById(Long id) {

@@ -1,7 +1,7 @@
 <app-header (toggleSideBarForMe)="sideBarToggler()"></app-header>
 <!-- <app-header (toggleSideBarForMe)="sideBarToggler($event)"></app-header> -->
-<mat-drawer-container>
-    <mat-drawer mode="side" [opened]="sideBarOpen">
+<mat-drawer-container >
+    <mat-drawer mode="side" [opened]="sideBarOpen" style="background: rgb(121, 121, 121);">
         <app-sidebar></app-sidebar>
     </mat-drawer>
     <mat-drawer-content>

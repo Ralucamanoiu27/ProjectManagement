@@ -17,4 +17,5 @@ export class DefaultComponent implements OnInit {
     this.sideBarOpen = !this.sideBarOpen;
   }
 
+
 }

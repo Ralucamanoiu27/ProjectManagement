@@ -7,6 +7,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  // tslint:disable-next-line: no-inferrable-types
+  otherTheme: boolean = false;
 
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
 
@@ -21,6 +23,10 @@ export class HeaderComponent implements OnInit {
       new Event('resize')
       );
     }, 300);
+  }
+
+  changeTheme() {
+    this.otherTheme = !this.otherTheme;
   }
 
 }
