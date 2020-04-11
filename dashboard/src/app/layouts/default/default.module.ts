@@ -37,8 +37,7 @@ import { SprintComponent } from 'src/app/modules/sprint/sprint.component';
 import { TaskComponent } from 'src/app/modules/task/task.component';
 import { TodoListComponent } from 'src/app/modules/todo-list/todo-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
+import { ProjectEditComponent } from 'src/app/modules/project-edit/project-edit.component';
 
 
 @NgModule({
@@ -50,7 +49,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProjectComponent,
     SprintComponent,
     TaskComponent,
-    TodoListComponent
+    TodoListComponent,
+    ProjectEditComponent
   ],
   imports: [
     CommonModule,
@@ -93,7 +93,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatGridListModule,
     MatExpansionModule,
     MatSidenavModule,
-    MatTableModule,
+    MatTableModule
   ],
   providers: [
     DashboardService

@@ -8,6 +8,7 @@ import { ProjectComponent } from './modules/project/project.component';
 import { SprintComponent } from './modules/sprint/sprint.component';
 import { TaskComponent } from './modules/task/task.component';
 import { TodoListComponent } from './modules/todo-list/todo-list.component';
+import { ProjectEditComponent } from './modules/project-edit/project-edit.component';
 
 
 
@@ -36,6 +37,10 @@ const routes: Routes = [{
   {
     path: 'todo-list',
     component: TodoListComponent
+  },
+  {
+    path: 'projects/:id/edit',
+    component: ProjectEditComponent
   }]
 }];
 

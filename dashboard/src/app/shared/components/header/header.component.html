@@ -5,24 +5,15 @@
             <mat-icon>menu</mat-icon>
         </button>
 
-        <span> APP LOGO </span>
-    
+        <div class="profile-card"> <img class="logo" width="50" src="https://scontent-otp1-1.xx.fbcdn.net/v/t1.15752-9/90760429_646385366185471_2416763696433856512_n.png?_nc_cat=107&_nc_sid=b96e70&_nc_ohc=hvyK4CQiSSQAX8oG0MP&_nc_ht=scontent-otp1-1.xx&oh=db9b111471947121cadb10dad6619035&oe=5EA75468">
+        </div>
 
         <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
             <ul fxLayout="row" fxLayoutGap="20px">
                 <li>
-                    <!-- <button mat-icon-button>
-                        <mat-icon>settings</mat-icon>
-                    </button> -->
-                    <button mat-button [matMenuTriggerFor]="menu">
-                        <mat-icon>settings</mat-icon>
+                    <button mat-button (click)="changeTheme()">
+                        <mat-icon>format_color_fill</mat-icon>
                     </button>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item (click)="changeTheme()">
-                            <!-- <mat-icon>exit_to_app</mat-icon> -->
-                            Change Theme
-                        </button>
-                    </mat-menu>
                 </li>
                 <li>
                     <button mat-icon-button>

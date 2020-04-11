@@ -12,9 +12,10 @@ import { SharedModule } from './shared/shared.module';
 
 
 
+
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
 
   ],
   imports: [
@@ -24,6 +25,7 @@ import { SharedModule } from './shared/shared.module';
     DefaultModule,
     HttpClientModule,
     SharedModule,
+    
 
   ],
   providers: [],

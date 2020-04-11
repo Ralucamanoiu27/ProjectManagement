@@ -44,7 +44,7 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
 
   this.projects = this.projectService.getAllProjects();
-  this.columnsToDisplay = ['id', 'name', 'description', 'administrator'];
+  this.columnsToDisplay = ['id', 'name', 'description', 'administrator', 'actions'];
   this.anyRemainingModel = true;
   this.filter = 'all';
   this.beforeEditCache = '';
@@ -144,7 +144,10 @@ todosFiltered(): Todo[] {
 
   return this.todos;
 }
-
+deleteProject(id: number) {
+  this.projectService.deleteProject(id)
+    .subscribe(result => this.projects = this.projectService.getAllProjects());
+}
 
 
 }
