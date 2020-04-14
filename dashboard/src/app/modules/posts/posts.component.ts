@@ -44,7 +44,7 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
 
   this.projects = this.projectService.getAllProjects();
-  this.columnsToDisplay = ['id', 'name', 'description', 'administrator', 'actions'];
+  this.columnsToDisplay = ['id', 'name', 'description', 'administrator', 'actions', 'update'];
   this.anyRemainingModel = true;
   this.filter = 'all';
   this.beforeEditCache = '';

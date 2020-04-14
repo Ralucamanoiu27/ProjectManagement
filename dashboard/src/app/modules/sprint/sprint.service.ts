@@ -21,7 +21,7 @@ export class SprintService {
     return this.httpClient.get<Sprint[]>(this.SPRINT_API);
   }
 
-  deleteSprints(id: number): Observable<Sprint> {
+  deleteSprint(id: number): Observable<Sprint> {
     return this.httpClient.delete<Sprint>(this.SPRINT_API + `/${id}`);
   }
 

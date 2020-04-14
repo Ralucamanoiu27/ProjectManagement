@@ -1,3 +1,4 @@
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgModule } from '@angular/core';
@@ -38,6 +39,10 @@ import { TaskComponent } from 'src/app/modules/task/task.component';
 import { TodoListComponent } from 'src/app/modules/todo-list/todo-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectEditComponent } from 'src/app/modules/project-edit/project-edit.component';
+import { SprintsOverviewComponent } from 'src/app/modules/sprints-overview/sprints-overview.component';
+import { SprintEditComponent } from 'src/app/modules/sprint-edit/sprint-edit.component';
+import { TasksOverviewComponent } from 'src/app/modules/tasks-overview/tasks-overview.component';
+import { TaskEditComponent } from 'src/app/modules/task-edit/task-edit.component';
 
 
 @NgModule({
@@ -50,7 +55,11 @@ import { ProjectEditComponent } from 'src/app/modules/project-edit/project-edit.
     SprintComponent,
     TaskComponent,
     TodoListComponent,
-    ProjectEditComponent
+    ProjectEditComponent,
+    SprintsOverviewComponent,
+    SprintEditComponent,
+    TasksOverviewComponent,
+    TaskEditComponent
   ],
   imports: [
     CommonModule,
@@ -69,7 +78,8 @@ import { ProjectEditComponent } from 'src/app/modules/project-edit/project-edit.
     FormsModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatIconModule
   ],
   exports: [
     MatAutocompleteModule,
@@ -93,7 +103,8 @@ import { ProjectEditComponent } from 'src/app/modules/project-edit/project-edit.
     MatGridListModule,
     MatExpansionModule,
     MatSidenavModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule
   ],
   providers: [
     DashboardService

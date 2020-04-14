@@ -1,0 +1,92 @@
+<p>task-edit works!</p>
+<form *ngIf="task" class="example-form">
+    <mat-form-field class="example-full-width">
+      <input
+        [(ngModel)]="task.nameTask"
+        matInput
+        name="nameTask"
+        placeholder="nameTask"
+      />
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <textarea
+        [(ngModel)]="task.descriptionTask"
+        matInput
+        name="descriptionTask"
+        placeholder="descriptionTask"
+      ></textarea>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+        <input
+          [formControl]="myControlTwo"
+          [matAutocomplete]="autotwo"
+          aria-label="sprint"
+          matInput
+          placeholder="sprint"
+          type="text"
+        />
+        <mat-autocomplete #autotwo="matAutocomplete" [displayWith]="displayFnTwo">
+          <mat-option
+            *ngFor="let optiontwo of filteredOptionsTwo | async"
+            [value]="optiontwo"
+          >
+            {{ optiontwo.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>difficulty</mat-label>
+      <mat-select [(value)]="task.difficulty">
+        <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty">
+          {{ difficulty }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <input
+        [(ngModel)]="task.storyPoints"
+        matInput
+        name="storyPoints"
+        placeholder="storyPoints"
+      />
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>progress</mat-label>
+      <mat-select [(value)]="task.progress">
+        <mat-option *ngFor="let progress of progresses" [value]="progress">
+          {{ progress }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <input
+        [formControl]="myControl"
+        [matAutocomplete]="auto"
+        aria-label="AssignedPerson"
+        matInput
+        placeholder="AssignedPerson"
+        type="text"
+      />
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option
+          *ngFor="let option of filteredOptions | async"
+          [value]="option"
+        >
+          {{ option.displayName }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  
+    <button mat-raised-button
+    (click)="updateTask()"
+  >
+    Update
+  </button>
+  </form>
+  

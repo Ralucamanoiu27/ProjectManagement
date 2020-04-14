@@ -1,5 +1,6 @@
 package com.sda10.finalproject.projectmanagement.controller;
 
+import com.sda10.finalproject.projectmanagement.dto.SprintDto;
 import com.sda10.finalproject.projectmanagement.dto.TaskDto;
 import com.sda10.finalproject.projectmanagement.dto.TaskMapper;
 import com.sda10.finalproject.projectmanagement.exception.NotFoundException;
@@ -9,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.sda10.finalproject.projectmanagement.controller.TaskController.API_TASKS;
 
@@ -27,7 +31,13 @@ public class TaskController {
         this.taskMapper = taskMapper;
         this.taskService = taskService;
     }
-
+    @GetMapping
+    public List<TaskDto> findAll() {
+        return taskService.findAll()
+                .stream()
+                .map(taskMapper::toDto)
+                .collect(Collectors.toList());
+    }
     @GetMapping("/{id}")
     public ResponseEntity<TaskDto> findById(@PathVariable Long id) {
         Task task = taskService.findById(id)
@@ -53,9 +63,10 @@ public class TaskController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
-        taskService.deleteTask(id);
+        taskService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 
 }
 

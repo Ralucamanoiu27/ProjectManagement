@@ -1,5 +1,6 @@
 package com.sda10.finalproject.projectmanagement.service;
 
+import com.sda10.finalproject.projectmanagement.exception.NotFoundException;
 import com.sda10.finalproject.projectmanagement.model.Project;
 import com.sda10.finalproject.projectmanagement.model.Sprint;
 import com.sda10.finalproject.projectmanagement.model.User;
@@ -61,11 +62,14 @@ public class SprintService {
 
     // TODO: investigate this
     public Sprint update(Long id, Sprint sprint) {
-        sprintRepository
-                .findById(id)
-                .orElseThrow(RuntimeException::new);
-        sprint.setId(id);
-        return sprintRepository.save(sprint);
+        Optional<Sprint> sprintOptional = sprintRepository.findById(id);
+
+        if (sprintOptional.isPresent()) {
+            sprint.setId(id);
+            return sprintRepository.save(sprint);
+        } else {
+            throw new NotFoundException("Sprint with id does not exist: " + id);
+        }
     }
 
     public void delete(Long id) {

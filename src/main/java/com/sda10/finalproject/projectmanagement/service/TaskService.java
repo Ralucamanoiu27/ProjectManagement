@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,21 +36,28 @@ public class TaskService {
         return taskRepository.save(task.setAssignedPerson(user.get()).setSprint(sprint.get()));
     }
 
+    public List<Task> findAll() {
+        return taskRepository.findAll();
+    }
+
     public Optional<Task> findById(Long id) {
         return taskRepository.findById(id);
     }
 
     public Task update(Long id, Task task) {
+        Optional<User> user = userRepository.findById(task.getAssignedPerson().getId());
+        Optional<Sprint> sprint = sprintRepository.findById(task.getSprint().getId());
+
         Optional<Task> taskOptional = taskRepository.findById(id);
         if (taskOptional.isPresent()) {
             task.setId(id);
-            return taskRepository.save(task);
+            return taskRepository.save(task.setAssignedPerson(user.get()).setSprint(sprint.get()));
         } else {
             throw new NotFoundException("Task with id does not exist: " + id);
         }
     }
 
-    public void deleteTask (Long id) {
+    public void delete (Long id) {
         Task existingTask = taskRepository
                 .findById(id)
                 .orElseThrow(RuntimeException::new);
