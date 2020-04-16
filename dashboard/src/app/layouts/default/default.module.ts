@@ -45,6 +45,9 @@ import { TasksOverviewComponent } from 'src/app/modules/tasks-overview/tasks-ove
 import { TaskEditComponent } from 'src/app/modules/task-edit/task-edit.component';
 
 
+
+
+
 @NgModule({
   declarations: [
     DefaultComponent,
@@ -59,7 +62,7 @@ import { TaskEditComponent } from 'src/app/modules/task-edit/task-edit.component
     SprintsOverviewComponent,
     SprintEditComponent,
     TasksOverviewComponent,
-    TaskEditComponent
+    TaskEditComponent,
   ],
   imports: [
     CommonModule,
@@ -79,7 +82,8 @@ import { TaskEditComponent } from 'src/app/modules/task-edit/task-edit.component
     MatAutocompleteModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    MatTooltipModule
   ],
   exports: [
     MatAutocompleteModule,
@@ -104,7 +108,8 @@ import { TaskEditComponent } from 'src/app/modules/task-edit/task-edit.component
     MatExpansionModule,
     MatSidenavModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     DashboardService

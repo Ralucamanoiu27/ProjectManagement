@@ -12,6 +12,8 @@ export class TasksOverviewComponent implements OnInit {
 
   tasks: Observable<Task[]>;
   columnsToDisplay: string[];
+  statusBar = [];
+  statusLabel = ['BACKLOG', 'TO_DO', 'IN_PROGRESS', 'QA', 'DONE'];
 
   constructor(private taskService: TaskService) {}
 
@@ -21,7 +23,21 @@ export class TasksOverviewComponent implements OnInit {
     this.columnsToDisplay = ['id', 'nameTask', 'descriptionTask',
                              'sprint', 'difficulty', 'storyPoints', 'progress',
                              'assignedPerson', 'actions', 'update'];
+    this.tasks.subscribe(result => {
+      this.countStatus(result);
+    });
+  }
 
+  countStatus(tasks: Task[]) {
+    this.statusBar = [0, 0, 0, 0, 0];
+    for (let i = 0; i < this.statusLabel.length; i++) {
+      for (const t of tasks) {
+        if (t.progress === this.statusLabel[i]) {
+          this.statusBar[i]++;
+        }
+      }
+      // console.log(i, this.statusBar[i], this.statusLabel[i]);
+    }
   }
 
   deleteTask(id: number) {

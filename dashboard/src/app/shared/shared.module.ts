@@ -1,3 +1,4 @@
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
@@ -18,6 +19,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { CardComponent } from './widgets/card/card.component';
 import { PieComponent } from './widgets/pie/pie.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { StatusbarComponent } from './widgets/statusbar/statusbar.component';
 
 
 
@@ -30,6 +32,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     AreaComponent,
     CardComponent,
     PieComponent,
+    StatusbarComponent,
   ],
   imports: [
     CommonModule,
@@ -42,7 +45,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatListModule,
     RouterModule,
     HighchartsChartModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatTooltipModule
   ],
   exports: [
     HeaderComponent,
@@ -50,7 +54,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     SidebarComponent,
     AreaComponent,
     CardComponent,
-    PieComponent
+    PieComponent,
+    StatusbarComponent
   ]
 })
 export class SharedModule { }

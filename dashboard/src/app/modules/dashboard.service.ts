@@ -8,10 +8,7 @@ export class DashboardService {
   constructor() { }
 
   bigChart() {
-    return [{
-        name: 'Asia',
-        data: [502, 635, 809, 947, 1402, 3634, 5268]
-    }, {
+    return [ {
         name: 'Africa',
         data: [106, 107, 111, 133, 221, 767, 1766]
     }, {
@@ -27,7 +24,7 @@ export class DashboardService {
   }
 
   cards() {
-    return [71, 76, 20, 66];
+    return [71, 59, 20, 66];
   }
 
   pieChart() {
