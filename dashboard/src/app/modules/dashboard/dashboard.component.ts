@@ -59,15 +59,34 @@ export class DashboardComponent implements OnInit {
               private projectService: ProjectService) { }
 
   ngOnInit(): void {
-     this.bigChart = this.dashboardService.bigChart();
-     this.cards = this.dashboardService.cards();
-     this.pieChart = this.dashboardService.pieChart();
-     this.dataSource.paginator = this.paginator;
-     this.projects = this.projectService.getAllProjects();
-     this.columnsToDisplay = ['id', 'name', 'description', 'administrator', 'actions'];
+    this.bigChart = this.dashboardService.bigChart();
+    this.cards = this.dashboardService.cards();
 
+    this.dataSource.paginator = this.paginator;
+    this.projects = this.projectService.getAllProjects();
+    this.columnsToDisplay = ['id', 'name', 'description', 'administrator', 'actions'];
+    this.projects.subscribe(result => {this.fillPieChart(result); } );
 
   }
+  fillPieChart(projects: Project[]) {
+    const admins = new Map();
+    for (const p of projects) {
+      let val = 1;
+      if (admins.has(p.administrator.displayName)) {
+        val = admins.get(p.administrator.displayName);
+        val++;
+      }
+      admins.set(p.administrator.displayName, val);
+    }
+
+    this.pieChart = [];
+    for (const k of admins.keys()) {
+      console.log(k, admins.get(k));
+      this.pieChart.push({name: k,
+                          y:    admins.get(k)});
+    }
+  }
+  
   deleteProject(id: number) {
     this.projectService.deleteProject(id)
       .subscribe(result => this.projects = this.projectService.getAllProjects());

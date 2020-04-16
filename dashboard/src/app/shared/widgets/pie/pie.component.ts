@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import HC_exporting from 'highcharts/modules/exporting';
 
@@ -14,8 +14,9 @@ export class PieComponent implements OnInit {
   @Input() data = [];
 
   constructor() { }
-
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
     this.chartOptions = {
       chart: {
         plotBackgroundColor: null,
@@ -56,6 +57,9 @@ export class PieComponent implements OnInit {
         data: this.data
       }]
     };
+  }
+  ngOnInit(): void {
+    
 
     HC_exporting(Highcharts);
 
