@@ -1,3 +1,4 @@
+import { TaskService } from './../task/task.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { MatTableDataSource } from '@angular/material/table';
@@ -5,37 +6,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ProjectService } from '../project/project.service';
 import { Observable } from 'rxjs';
 import { Project } from 'src/app/shared/model/project';
+import { Task } from 'src/app/shared/model/task';
 
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-  {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-  {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-  {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-  {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-  {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-  {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-  {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-  {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-  {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
-];
 
 @Component({
   selector: 'app-dashboard',
@@ -45,29 +17,69 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class DashboardComponent implements OnInit {
 
   bigChart = [];
+  bigChartName = ['BACKLOG', 'TO_DO', 'IN_PROGRESS', 'QA', 'DONE'];
+  bigChartProject = [];
   cards = [];
   pieChart = [];
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
   projects: Observable<Project[]>;
   columnsToDisplay: string[];
+  tasks: Observable<Task[]>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
 
+
   constructor(private dashboardService: DashboardService,
-              private projectService: ProjectService) { }
+              private projectService: ProjectService,
+              private taskService: TaskService) { }
 
   ngOnInit(): void {
-    this.bigChart = this.dashboardService.bigChart();
+
+
     this.cards = this.dashboardService.cards();
 
-    this.dataSource.paginator = this.paginator;
     this.projects = this.projectService.getAllProjects();
+    this.tasks = this.taskService.getAllTasks();
     this.columnsToDisplay = ['id', 'name', 'description', 'administrator', 'actions'];
     this.projects.subscribe(result => {this.fillPieChart(result); } );
 
+    for (let i = 0; i < this.bigChartName.length; i++) {
+         this.bigChart.push({name: this.bigChartName[i],
+                            data: [2, 2]});
+         console.log(i, this.bigChart[i]);
+    }
+
+    this.tasks.subscribe(result => {
+      this.countStatus(result);
+    });
+
   }
+  countStatus(tasks: Task[]) {
+    const projSet = new Map();
+    for (const t of tasks) {
+      projSet.set(t.sprint.project.name, 0);
+    }
+    this.bigChartProject = Array.from(projSet.keys());
+
+    this.bigChart = [];
+    for (let i = 0; i < this.bigChartName.length; i++) {
+      for (const c of projSet.keys()) { projSet.set(c, 0); }
+      for (const t of tasks) {
+        if (t.progress === this.bigChartName[i]) {
+          let val = projSet.get(t.sprint.project.name);
+          val++;
+          projSet.set(t.sprint.project.name, val);
+        }
+      }
+
+      this.bigChart.push({name: this.bigChartName[i],
+                        data: Array.from(projSet.values())});
+      console.log(i, this.bigChart[i]);
+    }
+  }
+  
   fillPieChart(projects: Project[]) {
     const admins = new Map();
     for (const p of projects) {
@@ -81,12 +93,12 @@ export class DashboardComponent implements OnInit {
 
     this.pieChart = [];
     for (const k of admins.keys()) {
-      console.log(k, admins.get(k));
+      // console.log(k, admins.get(k));
       this.pieChart.push({name: k,
                           y:    admins.get(k)});
     }
   }
-  
+
   deleteProject(id: number) {
     this.projectService.deleteProject(id)
       .subscribe(result => this.projects = this.projectService.getAllProjects());

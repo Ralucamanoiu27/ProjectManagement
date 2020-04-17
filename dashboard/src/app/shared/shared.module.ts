@@ -20,6 +20,7 @@ import { CardComponent } from './widgets/card/card.component';
 import { PieComponent } from './widgets/pie/pie.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { StatusbarComponent } from './widgets/statusbar/statusbar.component';
+import { MatTreeModule } from '@angular/material/tree';
 
 
 
@@ -46,7 +47,8 @@ import { StatusbarComponent } from './widgets/statusbar/statusbar.component';
     RouterModule,
     HighchartsChartModule,
     MatFormFieldModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTreeModule
   ],
   exports: [
     HeaderComponent,
