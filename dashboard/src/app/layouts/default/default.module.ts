@@ -1,3 +1,4 @@
+import { FeedbackComponent } from './../../modules/feedback/feedback.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -43,6 +44,9 @@ import { SprintsOverviewComponent } from 'src/app/modules/sprints-overview/sprin
 import { SprintEditComponent } from 'src/app/modules/sprint-edit/sprint-edit.component';
 import { TasksOverviewComponent } from 'src/app/modules/tasks-overview/tasks-overview.component';
 import { TaskEditComponent } from 'src/app/modules/task-edit/task-edit.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ContactComponent } from 'src/app/modules/contact/contact.component';
+
 
 
 
@@ -63,6 +67,8 @@ import { TaskEditComponent } from 'src/app/modules/task-edit/task-edit.component
     SprintEditComponent,
     TasksOverviewComponent,
     TaskEditComponent,
+    ContactComponent,
+    FeedbackComponent
   ],
   imports: [
     CommonModule,
@@ -83,7 +89,8 @@ import { TaskEditComponent } from 'src/app/modules/task-edit/task-edit.component
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
   ],
   exports: [
     MatAutocompleteModule,
@@ -110,6 +117,7 @@ import { TaskEditComponent } from 'src/app/modules/task-edit/task-edit.component
     MatTableModule,
     MatIconModule,
     BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [
     DashboardService

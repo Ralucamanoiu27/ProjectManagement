@@ -1,3 +1,4 @@
+import { FeedbackComponent } from './modules/feedback/feedback.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from './layouts/default/default.component';
@@ -13,6 +14,7 @@ import { SprintsOverviewComponent } from './modules/sprints-overview/sprints-ove
 import { SprintEditComponent } from './modules/sprint-edit/sprint-edit.component';
 import { TasksOverviewComponent } from './modules/tasks-overview/tasks-overview.component';
 import { TaskEditComponent } from './modules/task-edit/task-edit.component';
+import { ContactComponent } from './modules/contact/contact.component';
 
 
 
@@ -61,6 +63,14 @@ const routes: Routes = [{
   {
     path: 'tasks/:id/edit',
     component: TaskEditComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
+  },
+  {
+    path: 'message',
+    component: FeedbackComponent
   }]
 }];
 

@@ -13,9 +13,17 @@ spring:
         format_sql: false
         dialect: org.hibernate.dialect.MySQL8Dialect
         hbm2ddl.auto: update
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: raluca.manoiu27@gmail.com
+    password: kosbmfjmxoceqcgb
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.starttls.enable: true
 
 logging.level:
   root: DEBUG
   org.springframework: DEBUG
   org.hibernate: DEBUG
   com.sda10.finalproject.projectmanager: DEBUG
+

@@ -3,6 +3,7 @@ import { Task } from 'src/app/shared/model/task';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Email } from 'src/app/shared/model/email';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,14 @@ export class TaskService {
     return this.httpClient.get<Task[]>(this.TASK_API + '/search', {
       params: {name: nameParam }
     });
+  }
+
+  private readonly EMAIL_API = `${environment.serverApiUrl}/email/`;
+
+
+  sendEmail(email: Email): Observable<Email> {
+    console.log(email);
+    return this.httpClient.post<Email>(this.EMAIL_API, email);
   }
 
 }

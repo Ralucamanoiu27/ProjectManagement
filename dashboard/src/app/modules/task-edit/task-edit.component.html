@@ -90,4 +90,35 @@
     Update
   </button>
   </form>
+
   
+<br>
+
+<mat-divider></mat-divider>
+
+<br>
+
+  <div class="row">
+    <div class="col-md-12 container" ui-view>
+      <h3>Feedback</h3>
+      <form class="example-form">
+        
+      
+        <mat-form-field class="example-full-width">
+            <input [(ngModel)]="emailFrom" matInput name="emailFrom" placeholder="Your Email"/>
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+            <input [(ngModel)]="message" matInput name="message" placeholder="message"/>
+        </mat-form-field>
+      
+        <button
+        (click)="sendEmail()"
+        color="accent"
+        mat-raised-button
+        matTooltip="Save data"
+        >
+        Send Message
+        </button>
+    </form>
+

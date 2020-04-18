@@ -21,6 +21,8 @@ import { PieComponent } from './widgets/pie/pie.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { StatusbarComponent } from './widgets/statusbar/statusbar.component';
 import { MatTreeModule } from '@angular/material/tree';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 
@@ -48,7 +50,8 @@ import { MatTreeModule } from '@angular/material/tree';
     HighchartsChartModule,
     MatFormFieldModule,
     MatTooltipModule,
-    MatTreeModule
+    MatTreeModule,
+    MatDialogModule
   ],
   exports: [
     HeaderComponent,

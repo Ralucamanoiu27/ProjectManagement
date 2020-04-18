@@ -10,6 +10,7 @@ import { UserService } from '../user/user.service';
 import { SprintService } from '../sprint/sprint.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { map, flatMap, startWith } from 'rxjs/operators';
+import { Email } from 'src/app/shared/model/email';
 
 
 
@@ -22,6 +23,11 @@ import { map, flatMap, startWith } from 'rxjs/operators';
 export class TaskEditComponent implements OnInit {
 
 
+  emailTo: string;
+  username: string;
+  emailFrom: string;
+  subject: string;
+  message: string;
 
 difficulties: string[] = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
 progresses: string[] = ['BACKLOG', 'TO_DO', 'IN_PROGRESS', 'QA', 'DONE'];
@@ -84,5 +90,14 @@ progresses: string[] = ['BACKLOG', 'TO_DO', 'IN_PROGRESS', 'QA', 'DONE'];
         error => console.log(error));
 
   }
+
+  sendEmail() {
+    const emailTo = this.task.assignedPerson.email;
+    const username = this.emailFrom;
+    const subject = 'Feedback ticket';
+    const e = new Email(username, emailTo, this.emailFrom , subject, this.message);
+    this.taskService.sendEmail(e)
+        .subscribe(result => console.log("send email"));
+    }
 
 }
