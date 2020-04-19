@@ -1,11 +1,16 @@
+<!-- <div  fxLayoutAlign="space-between center" fxLayoutGap="10px" > -->
+<div fxFlex="80">
 
-<form *ngIf="task" class="example-form">
+<mat-card class="mat-elevation-z12">
+  <mat-card-title style="text-align:center;">Update Task</mat-card-title>
+        <mat-card-content>
+<form *ngIf="task"  action="">
     <mat-form-field class="example-full-width">
       <input
         [(ngModel)]="task.nameTask"
         matInput
         name="nameTask"
-        placeholder="nameTask"
+        placeholder="Name"
       />
     </mat-form-field>
   
@@ -14,7 +19,7 @@
         [(ngModel)]="task.descriptionTask"
         matInput
         name="descriptionTask"
-        placeholder="descriptionTask"
+        placeholder="Description"
       ></textarea>
     </mat-form-field>
   
@@ -24,7 +29,7 @@
           [matAutocomplete]="autotwo"
           aria-label="sprint"
           matInput
-          placeholder="sprint"
+          placeholder="Sprint"
           type="text"
         />
         <mat-autocomplete #autotwo="matAutocomplete" [displayWith]="displayFnTwo">
@@ -38,7 +43,7 @@
       </mat-form-field>
   
     <mat-form-field>
-      <mat-label>difficulty</mat-label>
+      <mat-label>Difficulty</mat-label>
       <mat-select [(value)]="task.difficulty">
         <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty">
           {{ difficulty }}
@@ -51,12 +56,12 @@
         [(ngModel)]="task.storyPoints"
         matInput
         name="storyPoints"
-        placeholder="storyPoints"
+        placeholder="Story points"
       />
     </mat-form-field>
   
     <mat-form-field>
-      <mat-label>progress</mat-label>
+      <mat-label>Status</mat-label>
       <mat-select [(value)]="task.progress">
         <mat-option *ngFor="let progress of progresses" [value]="progress">
           {{ progress }}
@@ -70,7 +75,7 @@
         [matAutocomplete]="auto"
         aria-label="AssignedPerson"
         matInput
-        placeholder="AssignedPerson"
+        placeholder="Assigned person"
         type="text"
       />
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
@@ -86,39 +91,50 @@
     <button mat-raised-button
     matTooltip="Update data"
     (click)="updateTask()"
+    class="update-button"
+    color="primary"
   >
     Update
   </button>
-  </form>
+</form>
+</mat-card-content>
+</mat-card>
+</div>
 
-  
-<br>
 
-<mat-divider></mat-divider>
 
-<br>
 
-  <div class="row">
-    <div class="col-md-12 container" ui-view>
-      <h3>Feedback</h3>
-      <form class="example-form">
-        
-      
-        <mat-form-field class="example-full-width">
+<div fxFlex="80" fxLayoutAlign="space-between center">
+<!-- <div class="mat-elevation-z8"> -->
+  <mat-card class="mat-elevation-z12">
+   
+    <mat-card-title style="text-align:center;">Feedback</mat-card-title>
+          <mat-card-content>
+            <form action="">
+                
+          <mat-form-field class="example-full-width">
             <input [(ngModel)]="emailFrom" matInput name="emailFrom" placeholder="Your Email"/>
         </mat-form-field>
-      
+
         <mat-form-field class="example-full-width">
-            <input [(ngModel)]="message" matInput name="message" placeholder="message"/>
+            <textarea [(ngModel)]="message" matInput name="message" placeholder="Message"></textarea>
         </mat-form-field>
-      
+
         <button
         (click)="sendEmail()"
-        color="accent"
+        color="primary"
+        class="update-button"
         mat-raised-button
         matTooltip="Save data"
         >
         Send Message
         </button>
-    </form>
+  </form>
+</mat-card-content>
+
+</mat-card>
+
+</div>
+
+
 

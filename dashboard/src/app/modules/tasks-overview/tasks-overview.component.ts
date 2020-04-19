@@ -22,7 +22,7 @@ export class TasksOverviewComponent implements OnInit {
     // tslint:disable-next-line: max-line-length
     this.columnsToDisplay = ['id', 'nameTask', 'descriptionTask',
                              'sprint', 'difficulty', 'storyPoints', 'progress',
-                             'assignedPerson', 'actions', 'update'];
+                             'assignedPerson', 'actions'];
     this.tasks.subscribe(result => {
       this.countStatus(result);
     });

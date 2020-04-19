@@ -1,42 +1,53 @@
-<form class="example-form">
+<mat-card class="mat-elevation-z12">
+  <mat-card-title style="text-align:center;">Create User</mat-card-title>
+        <mat-card-content>
+<form action="">
     <mat-form-field class="example-full-width">
       <input
         [(ngModel)]="username"
         matInput
         name="username"
         placeholder="Username"
+        required
       />
+      <mat-error>Username is required</mat-error>
     </mat-form-field>
   
-    <mat-form-field class="example-full-width">
-      <textarea
+    <mat-form-field >
+      <input
         [(ngModel)]="password"
         matInput
         name="password"
         placeholder="Password"
-      ></textarea>
+        required
+        >
+
     </mat-form-field>
   
-    <mat-form-field class="example-full-width">
-      <textarea
+    <mat-form-field >
+      <input
         [(ngModel)]="email"
         matInput
         name="email"
         placeholder="Email"
-      ></textarea>
+        required
+      >
+      <mat-error >Email is required</mat-error>
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
-      <textarea
+      <input
         [(ngModel)]="displayName"
         matInput
         name="displayName"
         placeholder="Display name"
-      ></textarea>
+        required
+      >
+      <mat-error >Display name is required</mat-error>
     </mat-form-field>
   
     <mat-form-field>
-      <mat-label>role</mat-label>
+      <mat-label>Role</mat-label>
       <mat-select [(value)]="role">
         <mat-option *ngFor="let role of roles" [value]="role">
           {{ role }}
@@ -44,6 +55,13 @@
       </mat-select>
     </mat-form-field>
   
-    <button mat-raised-button color="accent" (click)="saveUser()" matTooltip="Save data" >Create</button>
+    <button mat-raised-button 
+    class="login-button" 
+    (click)="saveUser()" 
+    matTooltip="Save data"
+    color="primary"
+     >Create</button>
   </form>
+</mat-card-content>
+</mat-card>
   

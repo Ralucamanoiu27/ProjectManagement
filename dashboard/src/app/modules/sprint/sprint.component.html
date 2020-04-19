@@ -1,13 +1,18 @@
-
-<form class="form-group">
-
+<mat-card class="mat-elevation-z12">
+  <mat-card-title style="text-align:center;">Create Sprint</mat-card-title>
+        <mat-card-content>
+<form action="">
     <mat-form-field class="example-full-width">
         <input
           matInput
           name="name"
-          placeholder="name"
+          placeholder="Name"
+          required
           [(ngModel)]="name"
-        />
+          >
+          <mat-error>Name is required</mat-error>
+          
+        
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
@@ -16,8 +21,11 @@
         [matAutocomplete]="auto"
         aria-label="proiect"
         matInput
-        placeholder="proiect"
-      />
+        placeholder="Proiect"
+        required
+        >
+        <mat-error>Select a project</mat-error>
+      
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
         <mat-option
           *ngFor="let option of filteredOptions | async"
@@ -27,43 +35,49 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input
+        [(ngModel)]="dateFrom"
+        matInput
+        name="name"
+        placeholder="Start date"
+        required
+        type="date"
+      />
+      <mat-error>Select a start date</mat-error>
+    </mat-form-field>
   
     <mat-form-field class="example-full-width">
       <input
         [(ngModel)]="dateTo"
         matInput
         name="name"
-        placeholder="dateTo"
+        placeholder="End date"
+        required
         type="date"
-      />
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input
-        [(ngModel)]="dateFrom"
-        matInput
-        name="name"
-        placeholder="dateFrom"
-        type="date"
-      />
+      >
+      <mat-error>Select a end date</mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <input
+      <textarea
         [(ngModel)]="plannedStoryPoint"
         matInput
         name="name"
-        placeholder="plannedStoryPoint"
-      />
+        placeholder="Planned story points"
+      ></textarea>
     </mat-form-field>
   
     <button
-    color="accent"
     mat-raised-button
-    matTooltip="Save data"
-      (click)="saveSprint()"
-
+    matTooltip="Save the recording"
+    (click)="saveSprint()"
+    class="login-button"
+    color="primary"
     >
       Create
     </button>
 
   </form>
+</mat-card-content>
+</mat-card>

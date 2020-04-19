@@ -1,7 +1,6 @@
 import { TaskService } from './../task/task.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ProjectService } from '../project/project.service';
 import { Observable } from 'rxjs';

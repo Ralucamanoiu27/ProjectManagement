@@ -12,7 +12,7 @@ spring:
       hibernate:
         format_sql: false
         dialect: org.hibernate.dialect.MySQL8Dialect
-        hbm2ddl.auto: update
+        hbm2ddl.auto: create
   mail:
     host: smtp.gmail.com
     port: 587

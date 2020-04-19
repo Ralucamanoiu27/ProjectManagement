@@ -1,3 +1,4 @@
+
 import { FeedbackComponent } from './../../modules/feedback/feedback.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -46,6 +47,12 @@ import { TasksOverviewComponent } from 'src/app/modules/tasks-overview/tasks-ove
 import { TaskEditComponent } from 'src/app/modules/task-edit/task-edit.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ContactComponent } from 'src/app/modules/contact/contact.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from 'src/app/app.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { RegisterUserComponent } from 'src/app/modules/register-user/register-user.component';
+
+
 
 
 
@@ -68,7 +75,8 @@ import { ContactComponent } from 'src/app/modules/contact/contact.component';
     TasksOverviewComponent,
     TaskEditComponent,
     ContactComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    RegisterUserComponent
   ],
   imports: [
     CommonModule,
@@ -90,7 +98,11 @@ import { ContactComponent } from 'src/app/modules/contact/contact.component';
     BrowserAnimationsModule,
     MatIconModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatTabsModule
+
   ],
   exports: [
     MatAutocompleteModule,
@@ -117,10 +129,12 @@ import { ContactComponent } from 'src/app/modules/contact/contact.component';
     MatTableModule,
     MatIconModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    
   ],
   providers: [
     DashboardService
-  ]
+  ],
+  bootstrap: [AppComponent]
 })
 export class DefaultModule { }

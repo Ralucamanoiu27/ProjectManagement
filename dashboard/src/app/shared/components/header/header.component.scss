@@ -41,7 +41,7 @@ ul li {
 @include mat-core();
 
 
-$custom-primary: mat-palette($mat-deep-purple,600);
+$custom-primary: mat-palette($mat-indigo,600);
 $custom-accent: mat-palette($mat-pink, 100);
 
 $custom-theme: mat-dark-theme($custom-primary, $custom-accent);
@@ -49,7 +49,7 @@ $custom-theme: mat-dark-theme($custom-primary, $custom-accent);
 
 
 
-$alt-primary: mat-palette($mat-yellow);
+$alt-primary: mat-palette($mat-pink);
 $alt-accent: mat-palette($mat-grey, 200);
 
 $alt-theme: mat-dark-theme($alt-primary, $alt-accent);

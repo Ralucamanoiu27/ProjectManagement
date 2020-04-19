@@ -1,10 +1,34 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-  }
+// .example-form {
+//   min-width: 150px;
+//   max-width: 500px;
+//   width: 100%;
+//   }
+// .example-full-width {
+//   width: 100%;
+// }
   
-.example-full-width {
-  width: 100%;
+mat-card {
+  width: 30%;
+  margin: 10% auto;
+  border-radius: 8px;
 }
+mat-form-field, mat-checkbox {
+  width: 80%;
+  display: block;
+  margin: auto;
+}
+mat-card-content {
+  margin-top: 20px;
+}
+
+.login-button {
+  margin-top: 20px;
+  display: block;
+  width: 80%;
+  margin: 20px auto;
+
+}
+
+  
+

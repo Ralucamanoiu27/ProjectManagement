@@ -1,12 +1,17 @@
 
-<form class="example-form">
+<mat-card class="mat-elevation-z12">
+  <mat-card-title style="text-align:center;">Create new task</mat-card-title>
+        <mat-card-content>
+<form action="">
     <mat-form-field class="example-full-width">
       <input
         [(ngModel)]="nameTask"
         matInput
         name="nameTask"
-        placeholder="nameTask"
+        placeholder="Task name"
+        required
       />
+      <mat-error>Name is required</mat-error>
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
@@ -14,7 +19,7 @@
         [(ngModel)]="descriptionTask"
         matInput
         name="descriptionTask"
-        placeholder="descriptionTask"
+        placeholder="Description"
       ></textarea>
     </mat-form-field>
   
@@ -24,9 +29,11 @@
           [matAutocomplete]="autotwo"
           aria-label="sprint"
           matInput
-          placeholder="sprint"
+          placeholder="Sprint"
+          required
           type="text"
         />
+        <mat-error>Required! Select a sprint.</mat-error>
         <mat-autocomplete #autotwo="matAutocomplete" [displayWith]="displayFnTwo">
           <mat-option
             *ngFor="let optiontwo of filteredOptionsTwo | async"
@@ -51,18 +58,18 @@
         [(ngModel)]="storyPoints"
         matInput
         name="storyPoints"
-        placeholder="storyPoints"
+        placeholder="Story points"
       />
     </mat-form-field>
   
-    <mat-form-field>
+    <!-- <mat-form-field>
       <mat-label>progress</mat-label>
       <mat-select [(value)]="progress">
         <mat-option *ngFor="let progress of progresses" [value]="progress">
           {{ progress }}
         </mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
   
     <mat-form-field class="example-full-width">
       <input
@@ -70,9 +77,11 @@
         [matAutocomplete]="auto"
         aria-label="AssignedPerson"
         matInput
-        placeholder="AssignedPerson"
+        placeholder="Assigned person"
+        required
         type="text"
-      />
+      >
+      <mat-error>Assigned person is required</mat-error>
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
         <mat-option
           *ngFor="let option of filteredOptions | async"
@@ -85,11 +94,14 @@
   
     <button
       (click)="saveTask()"
-      color="accent"
+      class="login-button"
+      color="primary"
       mat-raised-button
-      matTooltip="Save data"
+      matTooltip="Save the data"
     >
       Create
     </button>
   </form>
+</mat-card-content>
+</mat-card>
   

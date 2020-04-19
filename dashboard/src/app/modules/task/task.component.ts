@@ -68,8 +68,9 @@ export class TaskComponent implements OnInit {
   saveTask() {
     const sprint = this.myControlTwo.value;
     const user = this.myControl.value;
+    const progress = 'BACKLOG';
     // tslint:disable-next-line: max-line-length
-    const task = new Task(null, this.nameTask, this.descriptionTask, sprint, this.difficulty, this.storyPoints, this.progress, user );
+    const task = new Task(null, this.nameTask, this.descriptionTask, sprint, this.difficulty, this.storyPoints, progress, user );
     this.taskService.saveTask(task)
       .subscribe(result => console.log('ok'),
         error => console.log(error));

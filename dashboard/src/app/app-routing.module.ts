@@ -1,3 +1,4 @@
+import { RegisterUserComponent } from './modules/register-user/register-user.component';
 import { FeedbackComponent } from './modules/feedback/feedback.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -71,6 +72,10 @@ const routes: Routes = [{
   {
     path: 'message',
     component: FeedbackComponent
+  },
+  {
+    path: 'register',
+    component: RegisterUserComponent
   }]
 }];
 

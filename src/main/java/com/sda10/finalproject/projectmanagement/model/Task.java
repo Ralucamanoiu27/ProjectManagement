@@ -19,7 +19,6 @@ public class Task {
     private String nameTask;
 
     @Column
-    @NotNull
     private String descriptionTask;
 
     @ManyToOne
@@ -28,11 +27,9 @@ public class Task {
     private Sprint sprint;
 
     @Column
-    @NotNull
     private Difficulty difficulty;
 
     @Column
-    @NotNull
     private String storyPoints;
 
     @Column

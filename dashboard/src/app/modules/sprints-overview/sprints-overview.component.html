@@ -1,57 +1,107 @@
 
+
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
-    <div fxFlex="100">
-        <!-- <div class="mat-elevation-z8"> -->
-<table mat-table [dataSource]="sprints | async" >
-    <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> </td>
-    </ng-container>
+    <div fxFlex="60">
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="sprints | async" >
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let element"> </td>
+                </ng-container>
+            
+               
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="project">
+                    <th mat-header-cell *matHeaderCellDef> project </th>
+                    <td mat-cell *matCellDef="let element"> {{element.project.name}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="dateFrom">
+                    <th mat-header-cell *matHeaderCellDef> dateFrom </th>
+                    <td *matCellDef="let element" mat-cell> {{element.dateFrom}}</td>
+                </ng-container>
+                <ng-container matColumnDef="dateTo">
+                    <th mat-header-cell *matHeaderCellDef> dateTo </th>
+                    <td *matCellDef="let element" mat-cell> {{element.dateTo}}</td>
+                </ng-container>
+                <ng-container matColumnDef="plannedStoryPoint">
+                    <th mat-header-cell *matHeaderCellDef> plannedStoryPoint </th>
+                    <td *matCellDef="let element" mat-cell> {{element.plannedStoryPoint}}</td>
+                </ng-container>
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element"> 
+                        <ul fxLayout="row" fxLayoutGap="20px">
+                        <li>
+                        <button mat-icon-button routerLink="/sprints/{{element.id}}/edit">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        </li>
+                        <li>
+                        <button mat-icon-button (click)="deleteSprint(element.id)"> 
+                            <mat-icon>delete</mat-icon> 
+                        </button>
+                        </li>
+                    </ul>
+                    </td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+            
+            </table>
+        </div>
+    </div>
+<div fxFlex="40">
+    <div  ng-controller="myctrl"  class="stats-cards" >
+        <div class="mat-elevation-z8">
+            <mat-card >
+            <img class="logo" width="200" alt="Angular Logo" src="data:image/jpeg;base64,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">
 
-   
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-    
-    <ng-container matColumnDef="project">
-        <th mat-header-cell *matHeaderCellDef> project </th>
-        <td mat-cell *matCellDef="let element"> {{element.project.name}} </td>
-    </ng-container>
-    
-    <ng-container matColumnDef="dateFrom">
-        <th mat-header-cell *matHeaderCellDef> dateFrom </th>
-        <td *matCellDef="let element" mat-cell> {{element.dateFrom}}</td>
-    </ng-container>
-    <ng-container matColumnDef="dateTo">
-        <th mat-header-cell *matHeaderCellDef> dateTo </th>
-        <td *matCellDef="let element" mat-cell> {{element.dateTo}}</td>
-    </ng-container>
-    <ng-container matColumnDef="plannedStoryPoint">
-        <th mat-header-cell *matHeaderCellDef> plannedStoryPoint </th>
-        <td *matCellDef="let element" mat-cell> {{element.plannedStoryPoint}}</td>
-    </ng-container>
-    <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
-        <td mat-cell *matCellDef="let element"> 
-            <button mat-icon-button color="accent" routerLink="/sprints/{{element.id}}/edit">
-                <mat-icon>edit</mat-icon>
-            </button>
-        </td>
-    </ng-container>
-    <ng-container matColumnDef="update">
-        <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element">
-            <button mat-raised-button (click)="deleteSprint(element.id)"> 
-                <mat-icon>delete</mat-icon> 
-            </button>
-        </td>
-      </ng-container>
+            <input type="text"  class="todo-input" placeholder="What needs to be done" [(ngModel)]="todoTitle" (keyup.enter)="addTodo()">
 
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+            <div class="todo-item" *ngFor="let todo of todosFiltered()" @fade>
+                <div class="todo-item-left">
+                    <input type="checkbox" [(ngModel)]="todo.completed" (change)="doneEdit(todo)">
+                        <div *ngIf="!todo.editing; else editingTodo" class="todo-item-label" [ngClass]="{ 'completed' : todo.completed }" (dblclick)="editTodo(todo)">
+                            {{ todo.title }}
+                        </div>
+                            <ng-template #editingTodo>
+                                <input type="text" class="todo-item-edit" [(ngModel)]="todo.title" (blur)="doneEdit(todo)" (keyup.enter)="doneEdit(todo)" (keyup.esc)="cancelEdit(todo)"autofocus>
+                            </ng-template>
+            </div>
+            <div class="remove-item" (click)="deleteTodo(todo.id)">
+                &times;
+            </div>
+        </div>
 
-</table>
+    <div class="extra-container">
+        <div>
+            <label><input type="checkbox" (change)="checkAllTodos()"  [(ngModel)]="!anyRemainingModel"> Check All</label></div>
+            <div>{{ remaining() }} items left
+
+            </div>
+        </div>
+
+        <div class="extra-container">
+        <div>
+            <button mat-raised-button matclass="todo-button" [ngClass]="{'active': filter === 'all'}" (click)="filter='all'">All</button>
+            <button mat-raised-button matclass="todo-button" [ngClass]="{'active': filter === 'active'}" (click)="filter='active'">Active</button>
+            <button mat-raised-button matclass="todo-button" [ngClass]="{'active': filter === 'completed'}" (click)="filter='completed'">Completed</button>
+        </div>
+
+        <div *ngIf="atLeastOneCompleted()">
+            <button mat-raised-button matclass="todo-button" (click)="clearCompleted()">Clear Completed</button>
+        </div>
+
+        </div>
+
+        </mat-card>
+    </div>
 </div>
-<!-- </div> -->
+  
 </div>

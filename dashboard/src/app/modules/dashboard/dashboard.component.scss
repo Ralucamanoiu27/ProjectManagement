@@ -1,3 +1,6 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
 .stats-cards {
     .mat-card {
       overflow: hidden;
@@ -6,3 +9,11 @@
 table {
     width: 100%;
 }
+svg#clouds {
+  position: fixed;
+  bottom: -160px;
+  left: -230px;
+  z-index: -10;
+  width: 1920px;
+}
+

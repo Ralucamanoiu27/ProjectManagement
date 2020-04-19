@@ -25,9 +25,11 @@ public class User {
     private String password;
 
     @Column
+    @NotNull
     private String email;
 
     @Column
+    @NotNull
     private String displayName;
 
     @Column
