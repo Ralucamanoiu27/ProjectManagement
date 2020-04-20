@@ -10,7 +10,7 @@
        required>
        <mat-error>Name is required</mat-error>
     </mat-form-field>
-  
+    <br>
     <mat-form-field class="example-full-width">
       <textarea
         [(ngModel)]="description"
@@ -19,7 +19,7 @@
         placeholder="Description"
       ></textarea>
     </mat-form-field>
-  
+    <br>
     <mat-form-field class="example-full-width">
       <input
         [formControl]="myControl"
@@ -38,7 +38,7 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-  
+    <br>
     <button
     (click)="saveProject()"
     class="login-button"

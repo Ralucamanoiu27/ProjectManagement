@@ -14,7 +14,7 @@
           
         
     </mat-form-field>
-
+    <br>
     <mat-form-field class="example-full-width">
       <input
         [formControl]="myControl"
@@ -35,6 +35,7 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
+    <br>
     <mat-form-field class="example-full-width">
       <input
         [(ngModel)]="dateFrom"
@@ -46,7 +47,7 @@
       />
       <mat-error>Select a start date</mat-error>
     </mat-form-field>
-  
+    <br>
     <mat-form-field class="example-full-width">
       <input
         [(ngModel)]="dateTo"
@@ -58,7 +59,7 @@
       >
       <mat-error>Select a end date</mat-error>
     </mat-form-field>
-
+    <br>
     <mat-form-field class="example-full-width">
       <textarea
         [(ngModel)]="plannedStoryPoint"
@@ -67,7 +68,7 @@
         placeholder="Planned story points"
       ></textarea>
     </mat-form-field>
-  
+    <br>
     <button
     mat-raised-button
     matTooltip="Save the recording"

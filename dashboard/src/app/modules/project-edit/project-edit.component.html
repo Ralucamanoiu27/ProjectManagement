@@ -1,4 +1,6 @@
-
+<mat-card class="mat-elevation-z12">
+  <mat-card-title style="text-align:center;">Create Project</mat-card-title>
+        <mat-card-content>
 <form *ngIf="project" class="example-form">
     <mat-form-field class="example-full-width">
       <input [(ngModel)]="project.name" matInput name="name" placeholder="Name"/>
@@ -35,11 +37,14 @@
     <button
       (click)="updateProject()"
       aria-label="Button that displays a tooltip that has custom delays through a default config"
-      color="accent"
+      color="primary"
       mat-raised-button
       matTooltip="Update data"
+      class="login-button"
     >
       Update
     </button>
   </form>
+</mat-card-content>
+</mat-card>
   

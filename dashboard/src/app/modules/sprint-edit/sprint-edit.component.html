@@ -1,4 +1,6 @@
-
+<mat-card class="mat-elevation-z12">
+  <mat-card-title style="text-align:center;">Update Sprint</mat-card-title>
+        <mat-card-content>
 
 <form *ngIf="sprint" class="example-form">
   
@@ -59,8 +61,12 @@
   <button mat-raised-button
   matTooltip="Update data"
     (click)="updateSprint()"
+    class="login-button"
+    color="primary"
   >
     Update
   </button>
 </form>
+</mat-card-content>
+</mat-card>
 
