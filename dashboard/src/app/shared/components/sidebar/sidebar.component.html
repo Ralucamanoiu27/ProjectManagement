@@ -14,40 +14,34 @@
 
     <h2 matSubheader>Pages</h2>
 
-    <a mat-list-item routerLinkActive="List-item-active" routerLink="/">Dashboard</a>
+    <a mat-list-item routerLinkActive="List-item-active" routerLink="/home">Dashboard</a>
     <!-- <a mat-list-item routerLinkActive="List-item-active" routerLink="/posts">Projects</a> -->
-    <a mat-list-item routerLinkActive="List-item-active" routerLink="/sprints-overview">Sprints</a>
-    <a mat-list-item routerLinkActive="List-item-active" routerLink="/tasks-overview">Tasks</a>
+    <a mat-list-item routerLinkActive="List-item-active" routerLink="/home/sprints-overview">Sprints</a>
+    <a mat-list-item routerLinkActive="List-item-active" routerLink="/home/tasks-overview">Tasks</a>
     <!-- <a mat-list-item routerLinkActive="List-item-active" routerLink="/todo-list">Todo List</a> -->
         
 <mat-divider></mat-divider>
 
-        <h2 matSubheader>Manage</h2>
-    
+<h2 matSubheader>Manage</h2>
 
-            <a mat-list-item  routerLink="/user">Create User</a>
-   
-            <a mat-list-item routerLinkActive="List-item-active" routerLink="/project">Create Project</a>
+    <a mat-list-item *ngIf="isAdmin" routerLink="/home/user">Create User</a>
 
-            <a mat-list-item routerLinkActive="List-item-active" routerLink="/sprint">Create Sprint</a>
- 
-            <a mat-list-item routerLinkActive="List-item-active" routerLink="/task">Create Task</a>
+    <a mat-list-item *ngIf="isAdmin" routerLinkActive="List-item-active" routerLink="/home/project">Create Project</a>
 
+    <a mat-list-item routerLinkActive="List-item-active" routerLink="/home/sprint">Create Sprint</a>
 
+    <a mat-list-item routerLinkActive="List-item-active" routerLink="/home/task">Create Task</a>
 
-        
+<mat-divider></mat-divider>
 
-    <mat-divider></mat-divider>
-
-    <a mat-list-item routerLinkActive="List-item-active" routerLink="/contact">
+    <a mat-list-item routerLinkActive="List-item-active" routerLink="/home/contact">
         <mat-icon>import_contacts</mat-icon>
         Contacts
     </a>
 
-    <a mat-list-item routerLinkActive="List-item-active" routerLink="/contacts">
+    <a mat-list-item routerLinkActive="List-item-active">
         <mat-icon>help_outline</mat-icon>
         About
     </a>
 
 </mat-nav-list>
-

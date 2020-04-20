@@ -1,4 +1,4 @@
-import { RegisterUserComponent } from './modules/register-user/register-user.component';
+import { RegisterUserComponent } from './layouts/register-user/register-user.component';
 import { FeedbackComponent } from './modules/feedback/feedback.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -16,68 +16,81 @@ import { SprintEditComponent } from './modules/sprint-edit/sprint-edit.component
 import { TasksOverviewComponent } from './modules/tasks-overview/tasks-overview.component';
 import { TaskEditComponent } from './modules/task-edit/task-edit.component';
 import { ContactComponent } from './modules/contact/contact.component';
+import { AuthGuardService } from './layouts/register-user/auth-guard.service';
 
-
+const admin_children = [{
+  path: '',
+  component: DashboardComponent
+}, {
+  path: 'posts',
+  component: PostsComponent
+}, {
+  path: 'user',
+  component: UserComponent
+}, {
+  path: 'project',
+  component: ProjectComponent
+},  {
+  path: 'sprint',
+  component: SprintComponent
+}, {
+  path: 'task',
+  component: TaskComponent
+},
+{
+  path: 'todo-list',
+  component: TodoListComponent
+},
+{
+  path: 'projects/:id/edit',
+  component: ProjectEditComponent
+},
+{
+  path: 'sprints-overview',
+  component: SprintsOverviewComponent
+},
+{
+  path: 'tasks-overview',
+  component: TasksOverviewComponent
+},
+{
+  path: 'sprints/:id/edit',
+  component: SprintEditComponent
+},
+{
+  path: 'tasks/:id/edit',
+  component: TaskEditComponent
+},
+{
+  path: 'contact',
+  component: ContactComponent
+},
+{
+  path: 'message',
+  component: FeedbackComponent
+},
+];
 
 const routes: Routes = [{
-  path: '',
-  component: DefaultComponent,
-  children: [{
     path: '',
-    component: DashboardComponent
-  }, {
-    path: 'posts',
-    component: PostsComponent
-  }, {
-    path: 'user',
-    component: UserComponent
-  }, {
-    path: 'project',
-    component: ProjectComponent
-  },  {
-    path: 'sprint',
-    component: SprintComponent
-  }, {
-    path: 'task',
-    component: TaskComponent
-  },
-  {
-    path: 'todo-list',
-    component: TodoListComponent
-  },
-  {
-    path: 'projects/:id/edit',
-    component: ProjectEditComponent
-  },
-  {
-    path: 'sprints-overview',
-    component: SprintsOverviewComponent
-  },
-  {
-    path: 'tasks-overview',
-    component: TasksOverviewComponent
-  },
-  {
-    path: 'sprints/:id/edit',
-    component: SprintEditComponent
-  },
-  {
-    path: 'tasks/:id/edit',
-    component: TaskEditComponent
-  },
-  {
-    path: 'contact',
-    component: ContactComponent
-  },
-  {
-    path: 'message',
-    component: FeedbackComponent
+    redirectTo: 'register',
+    pathMatch: 'full'
   },
   {
     path: 'register',
     component: RegisterUserComponent
-  }]
-}];
+  },
+  {
+    path: 'home',
+    component: DefaultComponent,
+    children: admin_children,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: '**',
+    redirectTo: '/register'
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

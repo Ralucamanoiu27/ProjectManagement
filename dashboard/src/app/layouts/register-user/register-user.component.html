@@ -11,6 +11,7 @@
                     matInput
                     placeholder="Email"
                     required
+                    [(ngModel)]="loginEmail"
                     name="email"
                     ngModel
                     #email="ngModel">
@@ -25,7 +26,7 @@
                     required
                     minlength="6"
                     name="password"
-                    ngModel
+                    [(ngModel)]="loginPassword"
                     #password="ngModel">
                     <mat-error
                       *ngIf="password.errors && password.errors.required">
@@ -39,8 +40,7 @@
                 </mat-form-field>
                 <mat-checkbox>Remember Me!</mat-checkbox>
                 <button
-                  routerLinkActive="List-item-active" 
-                  routerLink="/"
+                  (click)="login()"
                   mat-raised-button
                   color="primary"
                   class="login-button">

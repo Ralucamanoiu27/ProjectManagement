@@ -1,14 +1,10 @@
-
-import { FeedbackComponent } from './../../modules/feedback/feedback.component';
+import { RegisterUserComponent } from 'src/app/layouts/register-user/register-user.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DefaultComponent } from './default.component';
-import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
-import { PostsComponent } from 'src/app/modules/posts/posts.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatDividerModule } from '@angular/material/divider';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -16,7 +12,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { DashboardService } from 'src/app/modules/dashboard.service';
-import { UserComponent } from 'src/app/modules/user/user.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -35,46 +30,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatOptionModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ProjectComponent } from 'src/app/modules/project/project.component';
-import { SprintComponent } from 'src/app/modules/sprint/sprint.component';
-import { TaskComponent } from 'src/app/modules/task/task.component';
-import { TodoListComponent } from 'src/app/modules/todo-list/todo-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ProjectEditComponent } from 'src/app/modules/project-edit/project-edit.component';
-import { SprintsOverviewComponent } from 'src/app/modules/sprints-overview/sprints-overview.component';
-import { SprintEditComponent } from 'src/app/modules/sprint-edit/sprint-edit.component';
-import { TasksOverviewComponent } from 'src/app/modules/tasks-overview/tasks-overview.component';
-import { TaskEditComponent } from 'src/app/modules/task-edit/task-edit.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ContactComponent } from 'src/app/modules/contact/contact.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from 'src/app/app.component';
 import { MatTabsModule } from '@angular/material/tabs';
 
-
-
-
-
-
-
-
 @NgModule({
   declarations: [
-    DefaultComponent,
-    DashboardComponent,
-    PostsComponent,
-    UserComponent,
-    ProjectComponent,
-    SprintComponent,
-    TaskComponent,
-    TodoListComponent,
-    ProjectEditComponent,
-    SprintsOverviewComponent,
-    SprintEditComponent,
-    TasksOverviewComponent,
-    TaskEditComponent,
-    ContactComponent,
-    FeedbackComponent
+    RegisterUserComponent
   ],
   imports: [
     CommonModule,
@@ -128,11 +91,11 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatIconModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    
   ],
   providers: [
     DashboardService
   ],
   bootstrap: [AppComponent]
 })
-export class DefaultModule { }
+export class RegisterUserModule { }
+

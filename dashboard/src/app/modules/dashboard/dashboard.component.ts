@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
     for (let i = 0; i < this.bigChartName.length; i++) {
          this.bigChart.push({name: this.bigChartName[i],
                             data: [2, 2]});
-         console.log(i, this.bigChart[i]);
+         //console.log(i, this.bigChart[i]);
     }
 
     this.tasks.subscribe(result => {
@@ -75,7 +75,7 @@ export class DashboardComponent implements OnInit {
 
       this.bigChart.push({name: this.bigChartName[i],
                         data: Array.from(projSet.values())});
-      console.log(i, this.bigChart[i]);
+      //console.log(i, this.bigChart[i]);
     }
   }
   

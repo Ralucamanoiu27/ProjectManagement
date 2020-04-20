@@ -52,7 +52,7 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let element"> 
-            <button mat-icon-button routerLink="/tasks/{{element.id}}/edit">
+            <button mat-icon-button routerLink="/home/tasks/{{element.id}}/edit">
                 <mat-icon>edit</mat-icon>
             </button>
             <button mat-icon-button (click)="deleteTask(element.id)"> 

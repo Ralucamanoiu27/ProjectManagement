@@ -20,7 +20,5 @@ export class UserService {
     return this.httpClient.get<User[]>(this.USER_API + '/search', {
       params: { name: nameParam }
     });
-
   }
-
 }
