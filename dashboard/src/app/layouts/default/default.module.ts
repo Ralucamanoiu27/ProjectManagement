@@ -50,7 +50,7 @@ import { ContactComponent } from 'src/app/modules/contact/contact.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from 'src/app/app.component';
 import { MatTabsModule } from '@angular/material/tabs';
-
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -99,7 +99,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatDialogModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    ToastrModule.forRoot(
+
+    )
 
   ],
   exports: [
@@ -127,8 +130,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatTableModule,
     MatIconModule,
     BrowserAnimationsModule,
-    MatDialogModule,
-    
+    MatDialogModule
   ],
   providers: [
     DashboardService

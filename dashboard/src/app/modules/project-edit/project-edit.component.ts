@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { User } from 'src/app/shared/model/user';
 import { UserService } from '../user/user.service';
 import {MatTooltipDefaultOptions} from '@angular/material/tooltip';
+import { ToastrService } from 'ngx-toastr';
 
 export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
   showDelay: 1000,
@@ -28,7 +29,9 @@ export class ProjectEditComponent implements OnInit {
 
   // tslint:disable-next-line: max-line-length
   constructor(private activatedRoute: ActivatedRoute,
-              private projectService: ProjectService, private userService: UserService, private router: Router) { }
+              private projectService: ProjectService, private userService: UserService,
+              private router: Router,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.activatedRoute.params
@@ -56,7 +59,8 @@ export class ProjectEditComponent implements OnInit {
     this.projectService.updateProject(this.project.id, this.project)
     .subscribe(result => console.log('ok'),
     error => console.log(error));
-    this.router.navigateByUrl('/projects-overview');
+    // this.router.navigateByUrl('/home');
+    this.toastr.success('Updated!', 'The data has been changed!');
 
   }
 }

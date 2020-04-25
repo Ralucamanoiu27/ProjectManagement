@@ -1,7 +1,7 @@
-<p>contact works!</p>
-<div class="row">
-    <div class="col-md-12 container" ui-view>
-      <h3>Contact Us</h3>
+
+<mat-card class="mat-elevation-z12">
+  <mat-card-title style="text-align:center;">Contact us</mat-card-title>
+        <mat-card-content>
       <form class="example-form">
         <mat-form-field class="example-full-width">
           <input [(ngModel)]="username" matInput name="username" placeholder="username"/>
@@ -16,18 +16,21 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-            <input [(ngModel)]="message" matInput name="message" placeholder="message"/>
+            <input [(ngModel)]="message" matInput name="message" placeholder="message" type="text"/>
         </mat-form-field>
       
         <button
         (click)="sendEmail()"
-        color="accent"
+        color="primary"
         mat-raised-button
         matTooltip="Save data"
+        class="send-button"
         >
-        Create
+        Send
         </button>
     </form>
+  </mat-card-content>
+</mat-card>
     
       
     

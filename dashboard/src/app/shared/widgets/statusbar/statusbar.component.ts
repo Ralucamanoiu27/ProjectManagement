@@ -23,7 +23,7 @@ export class StatusbarComponent implements OnInit {
     this.chartOptions = {
 
       title: {
-          text: 'Chart.update'
+          text: 'Status'
       },
 
       subtitle: {

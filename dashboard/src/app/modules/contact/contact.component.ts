@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Email } from './../../shared/model/email';
 import { Component, OnInit } from '@angular/core';
 import { ContactService } from './contact.service';
@@ -16,7 +17,8 @@ export class ContactComponent implements OnInit {
   message: string;
 
 
-  constructor(private contactService: ContactService) { }
+  constructor(private contactService: ContactService,
+              private toastr: ToastrService) { }
   //  e: Email;
   ngOnInit(): void {
     console.log("hhgffff");
@@ -35,5 +37,6 @@ export class ContactComponent implements OnInit {
   const e = new Email(this.username, emailTo, this.emailFrom , this.subject, this.message);
   this.contactService.sendEmail(e)
       .subscribe(result => console.log("send email"));
+      this.toastr.success('Success!', 'The message has been sent!');
   }
 }

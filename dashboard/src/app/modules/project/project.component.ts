@@ -7,7 +7,7 @@ import { UserService } from '../user/user.service';
 import { Router } from '@angular/router';
 import { map, startWith, flatMap } from 'rxjs/operators';
 import { Project } from 'src/app/shared/model/project';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
@@ -25,8 +25,9 @@ export class ProjectComponent implements OnInit {
 
 
   constructor(private projectService: ProjectService,
-              private userService: UserService, private router: Router) { }
-
+              private userService: UserService,
+              private router: Router,
+              private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
@@ -36,6 +37,7 @@ export class ProjectComponent implements OnInit {
         map(value => typeof value === 'string' ? value : value.name),
         flatMap(name => this.userService.searchUserByName(name))
       );
+
   }
 
   displayFn(user?: User): string | undefined {
@@ -49,10 +51,11 @@ export class ProjectComponent implements OnInit {
       // .subscribe(result => console.log(result));
       .subscribe(result => console.log('ok'),
         error => console.log(error));
-    // return to table
-    this.router.navigateByUrl('/projects-overview');
 
+    this.toastr.success('Success!', 'The data has been saved!');
 
   }
+
+
 
 }

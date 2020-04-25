@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { Sprint } from 'src/app/shared/model/sprint';
 import { User } from 'src/app/shared/model/user';
@@ -39,7 +40,8 @@ export class TaskComponent implements OnInit {
     private taskService: TaskService,
     private userService: UserService,
     private sprintService: SprintService,
-    private router: Router) { }
+    private router: Router,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -75,7 +77,8 @@ export class TaskComponent implements OnInit {
       .subscribe(result => console.log('ok'),
         error => console.log(error));
     // return to table
-    // this.router.navigateByUrl('/projects-overview');
+    this.toastr.success('Success!', 'The data has been saved!');
+
   }
 
 }

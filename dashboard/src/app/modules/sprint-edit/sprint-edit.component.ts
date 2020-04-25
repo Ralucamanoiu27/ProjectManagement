@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { SprintService } from './../sprint/sprint.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTooltipDefaultOptions } from '@angular/material/tooltip';
@@ -26,7 +27,8 @@ constructor(private activatedRoute: ActivatedRoute,
             // tslint:disable-next-line: max-line-length
             private sprintService: SprintService,
             private projectService: ProjectService,
-            private router: Router) { }
+            private router: Router,
+            private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
@@ -59,6 +61,7 @@ constructor(private activatedRoute: ActivatedRoute,
     this.sprintService.updateSprint(this.sprint.id, this.sprint)
       .subscribe(result => console.log('ok'),
         error => console.log(error));
+        this.toastr.success('Updated!', 'The data has been changed!');
 
   }
 

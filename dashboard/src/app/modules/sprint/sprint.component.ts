@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/shared/model/project';
 import { FormControl } from '@angular/forms';
@@ -32,7 +33,8 @@ export class SprintComponent implements OnInit {
   constructor(private sprintService: SprintService,
               private projectService: ProjectService,
               private userService: UserService,
-              private router: Router) { }
+              private router: Router,
+              private toastr: ToastrService) { }
 
               // copiezi de la porject mapp
   ngOnInit(): void {
@@ -60,6 +62,7 @@ export class SprintComponent implements OnInit {
       // .subscribe(result => console.log(result));
       .subscribe(result => console.log('ok'),
         error => console.log(error));
+      this.toastr.success('Success!', 'The data has been saved!');
 
   }
 

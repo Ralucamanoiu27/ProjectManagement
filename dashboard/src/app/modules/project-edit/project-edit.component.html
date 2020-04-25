@@ -1,7 +1,7 @@
 <mat-card class="mat-elevation-z12">
-  <mat-card-title style="text-align:center;">Create Project</mat-card-title>
+  <mat-card-title style="text-align:center;">Update Project</mat-card-title>
         <mat-card-content>
-<form *ngIf="project" class="example-form">
+<form *ngIf="project" class="example-form" >
     <mat-form-field class="example-full-width">
       <input [(ngModel)]="project.name" matInput name="name" placeholder="Name"/>
     </mat-form-field>
@@ -41,10 +41,17 @@
       mat-raised-button
       matTooltip="Update data"
       class="login-button"
+      routerLink="/home"
     >
       Update
     </button>
+
   </form>
 </mat-card-content>
 </mat-card>
+
+
+
+
+
   

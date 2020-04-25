@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultModule } from './layouts/default/default.module';
 import { SharedModule } from './shared/shared.module';
 import { RegisterUserModule } from './layouts/register-user/register-user.module';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -32,7 +33,8 @@ import { RegisterUserModule } from './layouts/register-user/register-user.module
     DefaultModule,
     RegisterUserModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    ToastrModule.forRoot()
 
   ],
   providers: [],

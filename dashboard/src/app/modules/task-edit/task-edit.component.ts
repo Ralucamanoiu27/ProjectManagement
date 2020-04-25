@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { MatTooltipDefaultOptions } from '@angular/material/tooltip';
 import { Task } from 'src/app/shared/model/task';
@@ -44,7 +45,8 @@ progresses: string[] = ['BACKLOG', 'TO_DO', 'IN_PROGRESS', 'QA', 'DONE'];
                private userService: UserService,
                private sprintService: SprintService,
                private router: Router,
-               private activatedRoute: ActivatedRoute) { }
+               private activatedRoute: ActivatedRoute,
+               private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params
@@ -88,6 +90,7 @@ progresses: string[] = ['BACKLOG', 'TO_DO', 'IN_PROGRESS', 'QA', 'DONE'];
     this.taskService.updateTask(this.task.id, this.task)
       .subscribe(result => console.log('ok'),
         error => console.log(error));
+    this.toastr.success('Updated!', 'The data has been changed!');
 
   }
 
@@ -98,6 +101,7 @@ progresses: string[] = ['BACKLOG', 'TO_DO', 'IN_PROGRESS', 'QA', 'DONE'];
     const e = new Email(username, emailTo, this.emailFrom , subject, this.message);
     this.taskService.sendEmail(e)
         .subscribe(result => console.log("send email"));
+    this.toastr.success('Success!', 'The message has now been sent!');
     }
 
 }

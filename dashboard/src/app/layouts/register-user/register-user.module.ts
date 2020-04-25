@@ -1,5 +1,5 @@
 import { RegisterUserComponent } from 'src/app/layouts/register-user/register-user.component';
-
+import { ToastrModule } from 'ngx-toastr';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgModule } from '@angular/core';
@@ -62,7 +62,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatDialogModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    ToastrModule
 
   ],
   exports: [
@@ -91,6 +92,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatIconModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    
   ],
   providers: [
     DashboardService

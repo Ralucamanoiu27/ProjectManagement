@@ -1,13 +1,13 @@
 <mat-nav-list >
     <div class="profile-card">
         <div class="header">
-            <h2>Raluca Manoiu</h2>
-            <h4>raluca.manoiu@yahoo.com</h4>
-
+            <h2 >{{username}}</h2>
+            <h4 >{{email}}</h4>
+            <!-- [dataSource]="username" -->
         </div>
 
-        <img src="https://scontent-otp1-1.xx.fbcdn.net/v/t1.0-1/p160x160/71032688_1487341274737510_5004378374404046848_o.jpg?_nc_cat=108&_nc_sid=dbb9e7&_nc_ohc=-tYjKAZg4g8AX9Cuqte&_nc_ht=scontent-otp1-1.xx&_nc_tp=6&oh=cc74230fde74060116b3cda9426e09fc&oe=5EA8659B" alt="Raluca M">
-        
+        <img *ngIf="isAdmin" src="https://scontent-otp1-1.xx.fbcdn.net/v/t1.0-1/p160x160/71032688_1487341274737510_5004378374404046848_o.jpg?_nc_cat=108&_nc_sid=dbb9e7&_nc_ohc=-tYjKAZg4g8AX9Cuqte&_nc_ht=scontent-otp1-1.xx&_nc_tp=6&oh=cc74230fde74060116b3cda9426e09fc&oe=5EA8659B" alt="https://www.pngkey.com/png/detail/988-9886269_blank-person-facebook-no-profile.png">
+        <img *ngIf="!isAdmin" src="https://www.pngkey.com/png/detail/988-9886269_blank-person-facebook-no-profile.png">
     </div>
 
     <mat-divider></mat-divider>

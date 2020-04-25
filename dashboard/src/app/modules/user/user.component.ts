@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './user.service';
 import { User } from 'src/app/shared/model/user';
@@ -16,7 +17,8 @@ export class UserComponent implements OnInit {
   role: string;
   roles: string[] = ['USER', 'ADMIN'];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -26,6 +28,9 @@ export class UserComponent implements OnInit {
 
     this.userService.saveUser(user)
       .subscribe(result => console.log(result));
+
+      this.toastr.success('Success!', 'The data has been saved!');
+
   }
 
 }

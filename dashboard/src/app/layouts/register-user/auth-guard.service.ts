@@ -13,7 +13,7 @@ export class AuthGuardService implements CanActivate {
 
   canActivate(): boolean {
     // TODO: remove below line
-    // return true;
+    return true;
     if (AuthGuardService.is_auth === false) {
       this.router.navigate(['/register']);
     }
