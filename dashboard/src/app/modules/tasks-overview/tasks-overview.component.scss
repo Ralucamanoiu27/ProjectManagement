@@ -26,3 +26,7 @@ table {
   .fade-enter, .fade-leave-to {
     opacity: 0;
   }
+  .example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }

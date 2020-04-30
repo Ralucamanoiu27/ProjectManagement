@@ -9,11 +9,12 @@ export class AuthGuardService implements CanActivate {
 
   private static is_auth = false;
 
-  static setValidLogin() { AuthGuardService.is_auth = true;}
-
   canActivate(): boolean {
     // TODO: remove below line
-    return true;
+    //return true;
+    if (localStorage.getItem('username')) {
+      AuthGuardService.is_auth = true;
+    }
     if (AuthGuardService.is_auth === false) {
       this.router.navigate(['/register']);
     }

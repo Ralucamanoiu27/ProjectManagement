@@ -53,7 +53,8 @@ export class ProjectComponent implements OnInit {
         error => console.log(error));
 
     this.toastr.success('Success!', 'The data has been saved!');
-
+    
+ 
   }
 
 

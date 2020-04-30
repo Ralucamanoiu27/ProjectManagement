@@ -17,8 +17,8 @@ export class SidebarComponent implements OnInit {
   email: string;
 
   ngOnInit(): void {
-    this.isAdmin = RegisterUserComponent.isAdmin();
-    this.username = RegisterUserComponent.getUser().username;
-    this.email = RegisterUserComponent.getUser().email;
+    this.isAdmin = localStorage.getItem('role') === 'ADMIN';
+    this.username = localStorage.getItem('username');
+    this.email = localStorage.getItem('email');
   }
 }

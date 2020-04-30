@@ -14,48 +14,53 @@
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
     <div fxFlex="100">
         <div class="mat-elevation-z8">
-<table mat-table [dataSource]="tasks | async" class="mat-elevation-z8">
+            <div class="example-header">
+                <mat-form-field>
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+              </div>
+<table mat-table #table  [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element"> </td>
     </ng-container>
     <ng-container matColumnDef="nameTask">
-        <th mat-header-cell *matHeaderCellDef> nameTask </th>
+        <th mat-header-cell *matHeaderCellDef> Name </th>
         <td mat-cell *matCellDef="let element"> {{element.nameTask}} </td>
     </ng-container>
     
     <ng-container matColumnDef="descriptionTask">
-        <th mat-header-cell *matHeaderCellDef> descriptionTask </th>
+        <th mat-header-cell *matHeaderCellDef> Description </th>
         <td mat-cell *matCellDef="let element"> {{element.descriptionTask}} </td>
     </ng-container>
     
     <ng-container matColumnDef="sprint">
-        <th mat-header-cell *matHeaderCellDef> sprint </th>
+        <th mat-header-cell *matHeaderCellDef> Sprint </th>
         <td *matCellDef="let element" mat-cell> {{element.sprint.name}}</td>
     </ng-container>
     <ng-container matColumnDef="difficulty">
-        <th mat-header-cell *matHeaderCellDef> difficulty </th>
+        <th mat-header-cell *matHeaderCellDef> Difficulty </th>
         <td *matCellDef="let element" mat-cell> {{element.difficulty}}</td>
     </ng-container>
     <ng-container matColumnDef="storyPoints">
-        <th mat-header-cell *matHeaderCellDef> storyPoints </th>
+        <th mat-header-cell *matHeaderCellDef> StoryPoints </th>
         <td *matCellDef="let element" mat-cell> {{element.storyPoints}}</td>
     </ng-container>
     <ng-container matColumnDef="progress">
-        <th mat-header-cell *matHeaderCellDef> progress </th>
+        <th mat-header-cell *matHeaderCellDef> Status </th>
         <td *matCellDef="let element" mat-cell> {{element.progress}}</td>
     </ng-container>
     <ng-container matColumnDef="assignedPerson">
-        <th mat-header-cell *matHeaderCellDef> assignedPerson </th>
+        <th mat-header-cell *matHeaderCellDef> Assigned Person </th>
         <td *matCellDef="let element" mat-cell> {{element.assignedPerson.displayName}}</td>
     </ng-container>
     <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <th mat-header-cell *matHeaderCellDef>  </th>
         <td mat-cell *matCellDef="let element"> 
-            <button mat-icon-button routerLink="/home/tasks/{{element.id}}/edit">
+            <button *ngIf="isAdmin" mat-icon-button routerLink="/home/tasks/{{element.id}}/edit">
                 <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button (click)="deleteTask(element.id)"> 
+            <button  *ngIf="isAdmin"  mat-icon-button (click)="deleteTask(element.id)"> 
                 <mat-icon>delete</mat-icon> 
             </button>
         </td>

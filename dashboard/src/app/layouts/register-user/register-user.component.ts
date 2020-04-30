@@ -17,20 +17,12 @@ export class RegisterUserComponent implements OnInit {
               private router: Router) { }
   //static is_admin: boolean = true;
   // TODO: uncomment below and remove above
-   static is_admin: boolean = false;
-  
-  static user: User = new User(0, 'admin', '','','','');
+  static is_admin: boolean = false;
 
   loginUsername: string;
   loginPassword: string;
   validLogin: boolean;
   invalidLogin: boolean;
-  
-
-  static isAdmin() {return RegisterUserComponent.is_admin;}
-  static getUser() {
-    return RegisterUserComponent.user;
-  }
 
   ngOnInit(): void {
   }
@@ -41,10 +33,9 @@ export class RegisterUserComponent implements OnInit {
       if (result.length === 1) {
         if (result[0].password === this.loginPassword) {
           this.validLogin = true;
-          RegisterUserComponent.user = result[0];
-          console.log(result[0].role);
-          RegisterUserComponent.is_admin = result[0].role === 'ADMIN';  //result[0].role
-          AuthGuardService.setValidLogin();
+          localStorage.setItem('username', result[0].username);
+          localStorage.setItem('email', result[0].email);
+          localStorage.setItem('role', result[0].role); //'ADMIN'
         }
       }
       if (this.validLogin) {

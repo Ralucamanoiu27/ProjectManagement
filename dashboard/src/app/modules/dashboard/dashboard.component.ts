@@ -15,6 +15,7 @@ import { Task } from 'src/app/shared/model/task';
 })
 export class DashboardComponent implements OnInit {
 
+  isAdmin: boolean;
   bigChart = [];
   bigChartName = ['BACKLOG', 'TO_DO', 'IN_PROGRESS', 'QA', 'DONE'];
   bigChartProject = [];
@@ -36,7 +37,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
-
+    this.isAdmin = localStorage.getItem('role') === 'ADMIN';
+    
     this.cards = this.dashboardService.cards();
 
     this.projects = this.projectService.getAllProjects();
@@ -49,10 +51,11 @@ export class DashboardComponent implements OnInit {
                             data: [2, 2]});
          //console.log(i, this.bigChart[i]);
     }
-
+    
     this.tasks.subscribe(result => {
       this.countStatus(result);
     });
+
 
   }
   countStatus(tasks: Task[]) {
@@ -102,5 +105,7 @@ export class DashboardComponent implements OnInit {
     this.projectService.deleteProject(id)
       .subscribe(result => this.projects = this.projectService.getAllProjects());
   }
+
+
 
 }

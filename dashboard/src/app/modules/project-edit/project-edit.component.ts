@@ -23,6 +23,7 @@ export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
 })
 export class ProjectEditComponent implements OnInit {
 
+  
   project: Project;
   myControl = new FormControl();
   filteredOptions: Observable<User[]>;
@@ -34,6 +35,8 @@ export class ProjectEditComponent implements OnInit {
               private toastr: ToastrService) { }
 
   ngOnInit() {
+
+    
     this.activatedRoute.params
     .pipe(
       // tslint:disable-next-line: no-string-literal
@@ -59,6 +62,7 @@ export class ProjectEditComponent implements OnInit {
     this.projectService.updateProject(this.project.id, this.project)
     .subscribe(result => console.log('ok'),
     error => console.log(error));
+
     // this.router.navigateByUrl('/home');
     this.toastr.success('Updated!', 'The data has been changed!');
 

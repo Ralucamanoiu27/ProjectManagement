@@ -27,6 +27,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class SprintsOverviewComponent implements OnInit {
 
+  isAdmin: boolean;
   todos: Todo[];
   todoTitle: string;
   idForTodo: number;
@@ -42,6 +43,7 @@ export class SprintsOverviewComponent implements OnInit {
 
   ngOnInit() {
 
+    this.isAdmin = localStorage.getItem('role') === 'ADMIN';
     this.sprints = this.sprintService.getAllSprints();
     this.columnsToDisplay = ['id', 'name', 'project', 'dateFrom', 'dateTo', 'plannedStoryPoint', 'actions'];
 
