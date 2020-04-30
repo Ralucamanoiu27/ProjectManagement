@@ -17,6 +17,7 @@ import { TasksOverviewComponent } from './modules/tasks-overview/tasks-overview.
 import { TaskEditComponent } from './modules/task-edit/task-edit.component';
 import { ContactComponent } from './modules/contact/contact.component';
 import { AuthGuardService } from './layouts/register-user/auth-guard.service';
+import { ErrorComponent } from './layouts/error/error.component';
 
 const admin_children = [{
   path: '',
@@ -81,6 +82,10 @@ const routes: Routes = [{
     component: RegisterUserComponent
   },
   {
+    path: 'error',
+    component: ErrorComponent
+  },
+  {
     path: 'home',
     component: DefaultComponent,
     children: admin_children,
@@ -88,7 +93,7 @@ const routes: Routes = [{
   },
   {
     path: '**',
-    redirectTo: '/register'
+    redirectTo: '/error'
   }
 ];
 

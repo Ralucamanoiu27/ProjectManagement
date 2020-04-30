@@ -8,7 +8,7 @@
     <input
       matInput
       name="name"
-      placeholder="name"
+      placeholder="Name"
       [(ngModel)]="sprint.name"
     />
 </mat-form-field>
@@ -18,7 +18,7 @@
     [matAutocomplete]="auto"
     aria-label="project"
     matInput
-    placeholder="project"
+    placeholder="Project Name"
     type="text"
   />
   <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
@@ -30,31 +30,31 @@
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>
-<mat-form-field class="example-full-width">
-  <input
-    [(ngModel)]="sprint.dateTo"
-    matInput
-    name="dateTo"
-    placeholder="dateTo"
-    type="date"
-  />
-</mat-form-field>
+
 <mat-form-field class="example-full-width">
   <input
     [(ngModel)]="sprint.dateFrom"
     matInput
     name="dateFrom"
-    placeholder="dateFrom"
+    placeholder="DateFrom"
     type="date"
   />
 </mat-form-field>
-
+<mat-form-field class="example-full-width">
+  <input
+    [(ngModel)]="sprint.dateTo"
+    matInput
+    name="dateTo"
+    placeholder="DateTo"
+    type="date"
+  />
+</mat-form-field>
 <mat-form-field class="example-full-width">
   <input
     [(ngModel)]="sprint.plannedStoryPoint"
     matInput
     name="plannedStoryPoint"
-    placeholder="plannedStoryPoint"
+    placeholder="PlannedStoryPoint"
   />
 </mat-form-field>
 
