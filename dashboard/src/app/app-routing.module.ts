@@ -18,6 +18,7 @@ import { TaskEditComponent } from './modules/task-edit/task-edit.component';
 import { ContactComponent } from './modules/contact/contact.component';
 import { AuthGuardService } from './layouts/register-user/auth-guard.service';
 import { ErrorComponent } from './layouts/error/error.component';
+import { AboutComponent } from './modules/about/about.component';
 
 const admin_children = [{
   path: '',
@@ -65,6 +66,10 @@ const admin_children = [{
 {
   path: 'contact',
   component: ContactComponent
+},
+{
+  path: 'about',
+  component: AboutComponent
 },
 {
   path: 'message',

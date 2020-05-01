@@ -1,3 +1,4 @@
+import { AboutComponent } from './../../modules/about/about.component';
 
 import { FeedbackComponent } from './../../modules/feedback/feedback.component';
 
@@ -74,7 +75,8 @@ import { ToastrModule } from 'ngx-toastr';
     TasksOverviewComponent,
     TaskEditComponent,
     ContactComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,

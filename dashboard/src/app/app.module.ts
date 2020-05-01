@@ -10,6 +10,7 @@ import { DefaultModule } from './layouts/default/default.module';
 import { SharedModule } from './shared/shared.module';
 import { RegisterUserModule } from './layouts/register-user/register-user.module';
 import { ToastrModule } from 'ngx-toastr';
+import { AboutComponent } from './modules/about/about.component';
 
 
 
@@ -24,7 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
 
   ],
   imports: [
